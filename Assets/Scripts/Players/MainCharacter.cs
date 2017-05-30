@@ -12,20 +12,29 @@ public class MainCharacter : MonoBehaviour {
 
 
 
-	private int MC_Gold = 500 ;
+	private int MC_Gold = 500;
 	private int MC_Ruby = 500;
 	private int MC_PlaneID = 0;
 	private int MC_BotLeftID = 0;
 	private int MC_BotRightID = 1;
 
 	private int levelPlane;
-	//private const int totalPlane = 5;
+	private int totalPlane; 
 	// 0 disable, enable = level > 0 , 1000 active + level
-	private List<int> List_Planes = new List<int>(){ 1002, 5 ,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // default 17 planes
+	private List<int> List_Planes = 			new List<int>(){ 1002,    5,    0,    0,    0,
+																	0,    0,    0,    0,    0,
+																	0,    0,    0,    0,    0,
+																	0,    0}; // default 17 planes
+	
+	private List<int> List_Planes_Fragment = 	 new List<int>(){   0,     0,    0,    0,    0,
+																    0,     0,    0,   0,    0,
+												 				    0,     0,    0,    0,    0,
+																    0,     0}; // default total Plane
 
 	//private const int totalBot = 5;
 	// 0 disable, enable = level > 0, 1000 bot left avtive + level , 2000 bot right active + level
-	private List<int> List_Bots = new List<int>(){1001, 2001, 1, 0, 0};
+	private List<int> List_Bots = 				new List<int>(){1001, 2001,    1,    0,    0};
+	private List<int> List_Bots_Fragment = 		new List<int>(){   0,    0,    0,    0,    0};
 
 	void Awake() {
 			Instance = this;

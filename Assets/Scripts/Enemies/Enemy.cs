@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(" timeSinceLevelLoad:  " + Time.timeSinceLevelLoad);
+        //Debug.Log(" timeSinceLevelLoad:  " + Time.timeSinceLevelLoad);
         if (Time.timeSinceLevelLoad > timeAction)
 			DirectionMove ();
 	}
