@@ -9,6 +9,8 @@ public class ActiveEnemies : MonoBehaviour {
 
 	public GameObject[] listObject;
 
+	public int lenghtList = 0;
+
 	void OnGUI()
 	{
 		int w = Screen.width, h = Screen.height;
@@ -24,27 +26,20 @@ public class ActiveEnemies : MonoBehaviour {
 		string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
 		GUI.Label(rect, text, style);
 	}
+
+	void Awake()
+	{
+	//	lenghtList = listObject.Length;
+	}
 	// Update is called once per frame
 	void Update () {
 		
 		deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
 
-        //if(Time.timeSinceLevelLoad > 50f) {
-        //    listObject [listObject.Length - 1].SetActive (true);
-        //}
-        //else if (Time.timeSinceLevelLoad > 40f)
-        //{
-        //    listObject[listObject.Length - 2].SetActive(true);
-        //}
-        //else if(Time.timeSinceLevelLoad > 30f) 
-        //{
-        //    listObject [listObject.Length - 3].SetActive (true);
-        //} else if(Time.timeSinceLevelLoad > 20f) {
-        //    listObject [listObject.Length - 4].SetActive (true);
-        //} else if(Time.timeSinceLevelLoad > 10f) {
-        //    listObject [listObject.Length - 5].SetActive (true);
-        //} else if(Time.timeSinceLevelLoad > 5f) {
-        //    listObject [listObject.Length - 6].SetActive (true);
-        //}
+		if(Time.timeSinceLevelLoad > lenghtList * 10f && lenghtList  < listObject.Length)
+		{
+			listObject [lenghtList].SetActive (true);
+			lenghtList++;
+		}
 	}
 }
