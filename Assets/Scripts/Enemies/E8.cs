@@ -8,8 +8,8 @@ public class E8 : Enemy {
 		if (directionMove == Define.DIRECTION_ENEMIES.DIAGONAL_LEFTTOP_RIGHTBOTTOM) {
 			transform.Rotate (0, 0, Define.ANGLE_ROTATE_225);
 		}
-		Speed = Attributes.E5_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
-		HP    = Attributes.E5_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
+		Speed = Attributes.E8_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
+		HP    = Attributes.E8_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
 	}
 	// Use this for initialization
 	void Start () {
