@@ -5,8 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 	public static Player Instance;
 
-	public Transform leftGun;
-	public Transform rightGun;
+	public Transform[] listGun;
+//	public Transform midGun;
+	//public Transform rightGun;
 	public Transform leftBot;
 	public Transform rightBot;
 
@@ -18,11 +19,14 @@ public class Player : MonoBehaviour {
 	private int DamgeSpecial;
 	private float FireRate;
 
+	private float turnValue = 0;
 
 	private Rigidbody2D bodyPlayer; // Control Player
 	float minX, maxX, minY, maxY, moveX, moveY, PlayerWidth, PlayerHeight;
 	Vector2 posTouch, posTouchMove;
 	bool mouseControl = false;
+
+	private Animator anim;
 
 	[SerializeField] private GameObject bullet = null;
 	[SerializeField] private GameObject[] ListBot = null;
@@ -40,7 +44,9 @@ public class Player : MonoBehaviour {
 			DontDestroyOnLoad (gameObject);
 		}
 
+
 		InitPlayer ();
+
 	}
 
 
@@ -66,6 +72,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		anim = GetComponent<Animator> ();
 		bodyPlayer = GetComponent<Rigidbody2D> ();
 		Vector3 bounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f));
 		Sprite spPlayer = GetComponent<SpriteRenderer> ().sprite;
@@ -125,10 +132,23 @@ public class Player : MonoBehaviour {
 			//if (moveX != 0 && moveY != 0) {
 			//	tempPosition.x = moveX;
 			//	tempPosition.y = moveY;
+			if (moveX < 0) {
+				turnValue = -1;
+			} else {
+				turnValue = 1;
+			}
+
+			if (moveX == 0) {
+				turnValue = 0;
+			}
 		} else {
 			//moveX = 0;
 			//moveY = 0;
+			turnValue = 0;
 		}
+
+		anim.SetFloat ("turn", turnValue);
+
 		Vector3 tempPosition = transform.position;
 		if (tempPosition.x < minX)
 			tempPosition.x = minX;
@@ -145,8 +165,11 @@ public class Player : MonoBehaviour {
 	}
 	IEnumerator shoot() {
 		canShoot = false;
-		Instantiate (bullet, leftGun.position, Quaternion.identity);
-		Instantiate (bullet, rightGun.position, Quaternion.identity);
+
+		for (int i = 0; i < listGun.Length; i++) 
+		{
+			Instantiate (bullet, listGun[i].position, Quaternion.identity);
+		}
 		yield return new WaitForSeconds (FireRate);
 		canShoot = true;
 	}
