@@ -146,5 +146,10 @@ public class Attributes : MonoBehaviour {
 		{ 1,   1,   1,   1,   8,   1, 2 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
 		{ 0,   0,   0,   0,   0,   0, 0}
 	};
+    public static int[,] E9_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
+	{ 
+		{ 1,   1,   1,   1,   8,   1, 2 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
+		{ 0,   0,   0,   0,   0,   0, 0}
+	};
 	// ************************ End Attribute Enemy ************************
 }
