@@ -12,7 +12,7 @@ public class LoadPlayer : MonoBehaviour {
 
 	void Awake()
 	{
-		idPlayerActive = MainCharacter.Instance.getPlaneID ();
+	//	idPlayerActive = MainCharacter.Instance.getPlaneID ();
 
 		Instantiate (ListPlayer[idPlayerActive], transform.position, Quaternion.identity);
 	}

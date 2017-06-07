@@ -33,7 +33,7 @@ public class Attributes : MonoBehaviour {
 
 	public static int[,] PLANE_ATT = new int[TOTAL_PLANE, TOTAL_PLANE_ATT]
 	{ 
-		{ 1,  210,  63, 152, 10 }, // 0 *** CLASS_PLANE, HP_PLANE, DAMGE_PLANE, DAMGE_SPEC_PLANE, FIRE_RATE_PLANE ***
+		{ 1,  210,  63, 152, 5 }, // 0 *** CLASS_PLANE, HP_PLANE, DAMGE_PLANE, DAMGE_SPEC_PLANE, FIRE_RATE_PLANE ***
 		{ 2,  293, 115, 146, 10},
 		{ 2,  639,  55, 165, 10},
 		{ 2,  403,  96, 165, 10},

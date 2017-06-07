@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YellowBullet : MonoBehaviour {
+public class Bullet : MonoBehaviour {
 	public float Speed;
 	//private float Attack;
 	private Rigidbody2D bodyBullet;

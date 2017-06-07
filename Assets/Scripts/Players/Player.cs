@@ -19,7 +19,6 @@ public class Player : MonoBehaviour {
 	private int DamgeSpecial;
 	private float FireRate;
 
-	private float turnValue = 0;
 
 	private Rigidbody2D bodyPlayer; // Control Player
 	float minX, maxX, minY, maxY, moveX, moveY, PlayerWidth, PlayerHeight;
@@ -27,6 +26,13 @@ public class Player : MonoBehaviour {
 	bool mouseControl = false;
 
 	private Animator anim;
+	bool turnLeft = false;
+	bool turnRight = false;
+	bool turnLeftBack = false;
+	bool turnRightBack = false;
+
+	string lastAnim;
+	string currAnim;
 
 	[SerializeField] private GameObject bullet = null;
 	[SerializeField] private GameObject[] ListBot = null;
@@ -82,6 +88,8 @@ public class Player : MonoBehaviour {
 		maxX = bounds.x + PlayerWidth;
 		minY = -bounds.y - PlayerHeight;
 		maxY = bounds.y + PlayerHeight;
+		lastAnim = "normal";
+		currAnim = "normal";
 	}
 
 	// Update is called once per frame
@@ -129,25 +137,10 @@ public class Player : MonoBehaviour {
 			transform.Translate (moveX, moveY, 0, Space.World);
 			posTouch.x = posTouchMove.x;
 			posTouch.y = posTouchMove.y;
-			//if (moveX != 0 && moveY != 0) {
-			//	tempPosition.x = moveX;
-			//	tempPosition.y = moveY;
-			if (moveX < 0) {
-				turnValue = -1;
-			} else {
-				turnValue = 1;
-			}
 
-			if (moveX == 0) {
-				turnValue = 0;
-			}
-		} else {
-			//moveX = 0;
-			//moveY = 0;
-			turnValue = 0;
-		}
+		} 
 
-		anim.SetFloat ("turn", turnValue);
+		updateAnimPlane ();
 
 		Vector3 tempPosition = transform.position;
 		if (tempPosition.x < minX)
@@ -181,6 +174,34 @@ public class Player : MonoBehaviour {
 	}
 	public int GetAttack() {
 		return Damge;
+	}
+
+	void updateAnimPlane ()
+	{
+		if (moveX < 0) {
+			currAnim = "left";
+		} 
+
+		if(moveX > 0){
+			currAnim = "right";
+		}
+
+		if (moveX == 0) 
+		{
+			if (lastAnim.Equals("left"))
+			{
+				currAnim = "leftback";
+			}
+			if (lastAnim.Equals("right"))
+			{
+				currAnim = "rightback";
+			}
+		}
+		if (currAnim != lastAnim) 
+		{
+			lastAnim = currAnim;
+			anim.Play (currAnim);
+		}
 	}
 
 }
