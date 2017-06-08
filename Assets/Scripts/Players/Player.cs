@@ -151,8 +151,10 @@ public class Player : MonoBehaviour {
 			tempPosition.y = minY;
 		else if (tempPosition.y > maxY)
 			tempPosition.y = maxY;
+        if (GamePlayController.instance.GetGameVictory())
+            tempPosition.y += 1;
 
-		transform.position = tempPosition;
+        transform.position = tempPosition;
 		if(canShoot)
 			StartCoroutine (shoot());
 	}

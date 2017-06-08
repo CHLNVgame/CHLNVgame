@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour {
 		if (target.tag == "DestroyBulletPlayer") {
 			Destroy (gameObject);
 		}
-		if (target.tag == "Enemy") {
+		if (target.tag == "Enemy" || target.tag == "Boss") {
 			Destroy (gameObject);
 		}
 	}

@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour {
 	protected float timeCounter;
 	protected int Speed;
 	protected int HP;
+    
 	void Awake() {
 	}
 	// Use this for initialization
@@ -47,13 +48,22 @@ public class Enemy : MonoBehaviour {
 		return HP;
 	}
 	void OnTriggerEnter2D(Collider2D target) {
-		if (target.tag == "DestroyEnemies")
-			Destroy (gameObject);
+        if (target.tag == "DestroyEnemies")
+        {
+            if (gameObject.tag == "Boss")
+                GamePlayController.instance.ShowVictoryPanel();
+            Destroy(gameObject);
+            
+        }
 		if (target.tag == "BulletPlayer") {
-		//	HP -= Player.Instance.GetAttack();
-		//	if(HP<=Define.ZERO)
-				Destroy (gameObject);
-			int temp = Random.Range (0, ListEffectDestroy.Length);
+            //	HP -= Player.Instance.GetAttack();
+            //	if(HP<=Define.ZERO)
+            if (gameObject.tag == "Boss")
+                GamePlayController.instance.ShowVictoryPanel();
+            Destroy (gameObject);
+            
+
+            int temp = Random.Range (0, ListEffectDestroy.Length);
 		//	Debug.Log (" xxxxxxxxxxxxxxxxxxxxxx  temp: "+temp);
 		//	Debug.Log (" yyyyyyyyyyyyyyyyyyyyyy  ListEffectDestroy.Length: "+ListEffectDestroy.Length);
 			Instantiate (ListEffectDestroy[temp], transform.position, Quaternion.identity);
