@@ -26,9 +26,21 @@ public class Define : MonoBehaviour {
 		DIAGONAL_RIGHTTOP_LEFTBOTTOM,
 		DIAGONAL_LEFTBOTTOM_RIGHTTOP
 	};
-	// Angle Rotation circle;
+    // Move Direction
+    public enum DIRECTION_CANON_SHOT
+    {
+        LEFT = 1,
+        RIGHT,
+        TOP,
+        BOTTOM,
+        LEFT_TOP,
+        LEFT_BOTTOM,
+        RIGHT_TOP,
+        RIGHT_BOTTOM
+    };
+    // Angle Rotation circle;
 
-	public const int ANGLE_ROTATE_45 = 45;
+    public const int ANGLE_ROTATE_45 = 45;
 	public const int ANGLE_ROTATE_90 = 90;
 	public const int ANGLE_ROTATE_135 = 135;
 	public const int ANGLE_ROTATE_180 = 180;

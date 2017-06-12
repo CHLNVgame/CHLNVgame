@@ -6,10 +6,19 @@ public class Canon : MonoBehaviour {
 
     public float Speed;
     public float timeAction = 0f;
+    public Define.DIRECTION_CANON_SHOT directionShot;
 
+    void Awake()
+    {
+        if (directionShot == Define.DIRECTION_CANON_SHOT.RIGHT)
+        {
+            transform.Rotate(0, 0, Define.ANGLE_ROTATE_180);
+        }
+    }
     // Use this for initialization
     void Start()
     {
+
     }
 
     // Update is called once per frame
