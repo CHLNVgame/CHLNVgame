@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MainCharacter : MonoBehaviour {
 
-	public static MainCharacter Instance;
+	public static MainCharacter instance;
+
 	private savedata data;
 
 	string UserNameID = "";
@@ -37,8 +38,12 @@ public class MainCharacter : MonoBehaviour {
 	private List<int> List_Bots_Fragment = 		new List<int>(){   0,    0,    0,    0,    0};
 
 	void Awake() {
-			Instance = this;
-			DontDestroyOnLoad (gameObject);
+
+		if (instance != null)
+			return;
+		
+		instance = this;
+		DontDestroyOnLoad (gameObject);
 	}
 
 	void setGold( int gold)

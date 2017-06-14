@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 	// Properties
@@ -18,8 +19,12 @@ public class Enemy : MonoBehaviour {
 	protected float timeCounter;
 	protected int Speed;
 	protected int HP;
+
+	public Image healthBar;
+	private int totalHP;
     
 	void Awake() {
+		totalHP = HP;
 	}
 	// Use this for initialization
 	void Start () {
@@ -68,5 +73,11 @@ public class Enemy : MonoBehaviour {
 		//	Debug.Log (" yyyyyyyyyyyyyyyyyyyyyy  ListEffectDestroy.Length: "+ListEffectDestroy.Length);
 			Instantiate (ListEffectDestroy[temp], transform.position, Quaternion.identity);
 		}
+	}
+
+	public void TakeDamge(float amount)
+	{
+		if(healthBar != null)
+		healthBar.fillAmount = HP / totalHP;
 	}
 }

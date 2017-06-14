@@ -58,9 +58,9 @@ public class Player : MonoBehaviour {
 
 	void InitPlayer()
 	{
-		idPlane    = MainCharacter.Instance.getPlaneID ();
-		idLeftBot  = MainCharacter.Instance.getBotLeftID ();
-		idRightBot = MainCharacter.Instance.getBotRightID ();
+		idPlane    = MainCharacter.instance.getPlaneID ();
+		idLeftBot  = MainCharacter.instance.getBotLeftID ();
+		idRightBot = MainCharacter.instance.getBotRightID ();
 
 		if(idLeftBot != -1)
 			Instantiate (ListBot[idLeftBot], Define.LEFT_BOT_POS , Quaternion.identity);
