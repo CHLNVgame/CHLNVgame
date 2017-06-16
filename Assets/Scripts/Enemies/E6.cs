@@ -22,6 +22,10 @@ public class E6 : Enemy {
 		HP    = Attributes.E6_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
 	}
 	void Start () {
+
+		Health health = GetComponent<Health> ();
+		health.SetHealth (HP);
+
 		tr_Player = GameObject.FindGameObjectWithTag ("Player").transform;
 		activeChase = true;
 	}

@@ -4,12 +4,19 @@ using UnityEngine;
 //from Assets.Scripts.MapLevel.MapScroll;
 public class Special : MonoBehaviour {
 
-    public float Speed;
-    public float timeAction = 0f;
+	public int Speed;
+	public float timeAction = 0f;
+	public int HP;
 
-    // Use this for initialization
-    void Start () {
-    }
+	private int level = 0;
+	// Use this for initialization
+	void Start()
+	{
+		Speed = Attributes.SPECIAL_ATT [level, Attributes.SPEED_SPECIAL];
+		HP = Attributes.SPECIAL_ATT[level, Attributes.HP_SPECIAL];
+		Health health = GetComponent<Health> ();
+		health.SetHealth (HP);
+	}
 	
 	// Update is called once per frame
 	void Update () {

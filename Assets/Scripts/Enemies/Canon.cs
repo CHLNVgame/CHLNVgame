@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Canon : MonoBehaviour {
 
-    public float Speed;
-    public float timeAction = 0f;
     public Define.DIRECTION_CANON_SHOT directionShot;
+
+	public int Speed;
+	public float timeAction = 0f;
+	public int HP;
+
+	private int level = 0;
 
     void Awake()
     {
@@ -15,10 +19,14 @@ public class Canon : MonoBehaviour {
             transform.Rotate(0, 0, Define.ANGLE_ROTATE_180);
         }
     }
+
     // Use this for initialization
     void Start()
     {
-
+		Speed = Attributes.CANON_ATT [level, Attributes.SPEED_CANON];
+		HP = Attributes.CANON_ATT[level, Attributes.HP_CANON];
+		Health health = GetComponent<Health> ();
+		health.SetHealth (HP);
     }
 
     // Update is called once per frame

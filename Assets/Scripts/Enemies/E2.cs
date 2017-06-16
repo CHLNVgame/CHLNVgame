@@ -15,10 +15,14 @@ public class E2 : Enemy {
 		Speed = Attributes.E2_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP    = Attributes.E2_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
 	}
-	// Use this for initialization
-	void Start () {
 
+
+	void Start ()
+	{
+		Health health = GetComponent<Health> ();
+		health.SetHealth (HP);
 	}
+	// Use this for initialization
 
 	// Update is called once per frame
 	/*void Update () {

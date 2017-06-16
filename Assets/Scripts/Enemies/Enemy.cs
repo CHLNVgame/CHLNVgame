@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 	// Properties
-	public float timeAction = 0f;
 
+	[Header("Get Value From Data")]
+	public float timeAction = 0f;
 	[Range(1, Attributes.TOTAL_LEVEL_ENEMY)]
 	public int levelEnemy = 1;
 	public Define.DIRECTION_ENEMIES directionMove;
 
-	[SerializeField] private GameObject[] ListEffectDestroy = null;
+
+	[Header("View Value")]
 
 	protected Transform tr_Player;
 	protected Vector3 targetMove;
@@ -19,17 +21,6 @@ public class Enemy : MonoBehaviour {
 	protected float timeCounter;
 	protected int Speed;
 	protected int HP;
-
-	public Image healthBar;
-	private int totalHP;
-    
-	void Awake() {
-		totalHP = HP;
-	}
-	// Use this for initialization
-	void Start () {
-
-	}
 
 	// Update is called once per frame
 	void Update () {
@@ -49,35 +40,5 @@ public class Enemy : MonoBehaviour {
 		}
 		transform.position = targetMove;
 	}
-	public int GetHPEnemy() {
-		return HP;
-	}
-	void OnTriggerEnter2D(Collider2D target) {
-        if (target.tag == "DestroyEnemies")
-        {
-            if (gameObject.tag == "Boss")
-                GamePlayController.instance.ShowVictoryPanel();
-            Destroy(gameObject);
-            
-        }
-		if (target.tag == "BulletPlayer") {
-            //	HP -= Player.Instance.GetAttack();
-            //	if(HP<=Define.ZERO)
-            if (gameObject.tag == "Boss")
-                GamePlayController.instance.ShowVictoryPanel();
-            Destroy (gameObject);
-            
 
-            int temp = Random.Range (0, ListEffectDestroy.Length);
-		//	Debug.Log (" xxxxxxxxxxxxxxxxxxxxxx  temp: "+temp);
-		//	Debug.Log (" yyyyyyyyyyyyyyyyyyyyyy  ListEffectDestroy.Length: "+ListEffectDestroy.Length);
-			Instantiate (ListEffectDestroy[temp], transform.position, Quaternion.identity);
-		}
-	}
-
-	public void TakeDamge(float amount)
-	{
-		if(healthBar != null)
-		healthBar.fillAmount = HP / totalHP;
-	}
 }

@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Bom : MonoBehaviour {
 
-    public float Speed;
+    public int Speed;
     public float timeAction = 0f;
+	public int HP;
 
+	private int level = 0;
     // Use this for initialization
     void Start()
     {
+		Speed = Attributes.BOM_ATT [level, Attributes.SPEED_BOM];
+		HP = Attributes.BOM_ATT[level, Attributes.HP_BOM];
+		Health health = GetComponent<Health> ();
+		health.SetHealth (HP);
     }
 
     // Update is called once per frame

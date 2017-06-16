@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class BomBullet : MonoBehaviour {
 
-    public float Speed;
-    public float timeAction = 0f;
+	public int Speed;
+	public float timeAction = 0f;
+	public int HP;
 
-    // Use this for initialization
-    void Start()
-    {
-    }
+	private int level = 0;
+	// Use this for initialization
+	void Start()
+	{
+		Speed = Attributes.BOM_BULLET_ATT [level, Attributes.SPEED_BOM_BULLET];
+		HP = Attributes.BOM_BULLET_ATT[level, Attributes.HP_BOM_BULLET];
+		Health health = GetComponent<Health> ();
+		health.SetHealth (HP);
+	}
 
     // Update is called once per frame
     void Update()
