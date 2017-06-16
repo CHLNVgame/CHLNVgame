@@ -15,7 +15,8 @@ public class Box : MonoBehaviour {
 		Speed = Attributes.BOX_ATT [level, Attributes.SPEED_BOX];
 		HP = Attributes.BOX_ATT[level, Attributes.HP_BOX];
 		Health health = GetComponent<Health> ();
-		health.SetHealth (HP);
+		if(health != null)
+			health.SetHealth (HP);
 	}
 	
 	// Update is called once per frame

@@ -26,7 +26,8 @@ public class Canon : MonoBehaviour {
 		Speed = Attributes.CANON_ATT [level, Attributes.SPEED_CANON];
 		HP = Attributes.CANON_ATT[level, Attributes.HP_CANON];
 		Health health = GetComponent<Health> ();
-		health.SetHealth (HP);
+		if(health != null)
+			health.SetHealth (HP);
     }
 
     // Update is called once per frame

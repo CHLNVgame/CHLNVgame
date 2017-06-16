@@ -15,7 +15,8 @@ public class Rocket : MonoBehaviour {
 		Speed = Attributes.ROCKET_ATT [level, Attributes.SPEED_ROCKET];
 		HP = Attributes.ROCKET_ATT[level, Attributes.HP_ROCKET];
 		Health health = GetComponent<Health> ();
-		health.SetHealth (HP);
+		if(health != null)
+			health.SetHealth (HP);
 	}
 
     // Update is called once per frame

@@ -15,7 +15,8 @@ public class BomBullet : MonoBehaviour {
 		Speed = Attributes.BOM_BULLET_ATT [level, Attributes.SPEED_BOM_BULLET];
 		HP = Attributes.BOM_BULLET_ATT[level, Attributes.HP_BOM_BULLET];
 		Health health = GetComponent<Health> ();
-		health.SetHealth (HP);
+		if(health != null)
+			health.SetHealth (HP);
 	}
 
     // Update is called once per frame

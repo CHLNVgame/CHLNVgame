@@ -15,7 +15,8 @@ public class Special : MonoBehaviour {
 		Speed = Attributes.SPECIAL_ATT [level, Attributes.SPEED_SPECIAL];
 		HP = Attributes.SPECIAL_ATT[level, Attributes.HP_SPECIAL];
 		Health health = GetComponent<Health> ();
-		health.SetHealth (HP);
+		if(health != null)
+			health.SetHealth (HP);
 	}
 	
 	// Update is called once per frame

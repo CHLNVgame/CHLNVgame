@@ -19,7 +19,8 @@ public class E4 : Enemy {
 	void Start ()
 	{
 		Health health = GetComponent<Health> ();
-		health.SetHealth (HP);
+		if(health != null)
+			health.SetHealth (HP);
 	}
 
 	// Update is called once per frame

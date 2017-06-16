@@ -20,7 +20,8 @@ public class E2 : Enemy {
 	void Start ()
 	{
 		Health health = GetComponent<Health> ();
-		health.SetHealth (HP);
+		if(health != null)
+			health.SetHealth (HP);
 	}
 	// Use this for initialization
 

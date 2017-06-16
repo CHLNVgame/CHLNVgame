@@ -24,7 +24,8 @@ public class E6 : Enemy {
 	void Start () {
 
 		Health health = GetComponent<Health> ();
-		health.SetHealth (HP);
+		if(health != null)
+			health.SetHealth (HP);
 
 		tr_Player = GameObject.FindGameObjectWithTag ("Player").transform;
 		activeChase = true;

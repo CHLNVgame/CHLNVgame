@@ -20,7 +20,8 @@ public class E7 : Enemy {
 	// Use this for initialization
 	void Start () {
 		Health health = GetComponent<Health> ();
-		health.SetHealth (HP);
+		if(health != null)
+			health.SetHealth (HP);
 	}
 
 	// Update is called once per frame
