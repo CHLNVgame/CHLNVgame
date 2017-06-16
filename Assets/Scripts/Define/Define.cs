@@ -67,4 +67,18 @@ public class Define : MonoBehaviour {
 		ACTIVE_RIGHT = 2000
 	}
 	// MainCharacter End
+
+	// Scenes
+
+	public const string sceneMainMenu = "sceneMainMenu";
+	public const string sceneProfile = "sceneProfile";
+	public const string sceneSetting = "sceneSetting";
+	public const string sceneDailyBonus = "sceneDailyBonus";
+	public const string sceneAchievement = "sceneAchievement";
+	public const string sceneContainer = "sceneContainer";
+	public const string sceneDailyQuest = "sceneDailyQuest";
+	public const string sceneGamePlay = "sceneGamePlay";
+
+
+	// Scenes End
 }

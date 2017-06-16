@@ -17,37 +17,38 @@ public class scriptMainMenu : MonoBehaviour {
 
 	public void gotoProfile()
 	{
-		Application.LoadLevel ("sceneProfile");
+		Application.LoadLevel ( Define.sceneProfile);
 	}
 
 	public void gotoSetting()
 	{
-		Application.LoadLevel ("sceneSetting");
+		Application.LoadLevel (Define.sceneSetting);
 	}
 
 	public void gotoDailyBonus()
 	{
-		Application.LoadLevel ("sceneDailyBonus");
+		Application.LoadLevel (Define.sceneDailyBonus);
 	}
 
 	public void gotoAchivement()
 	{
-		Application.LoadLevel ("sceneAchievement");
+		Application.LoadLevel (Define.sceneAchievement);
 	}
 
 	public void gotoContainer()
 	{
 		
-		Application.LoadLevel ("sceneContainer");
+		Application.LoadLevel (Define.sceneContainer);
 	}
 
 	public void gotoDailyQuest()
 	{
-		Application.LoadLevel ("sceneDailyQuest");
+		Application.LoadLevel (Define.sceneDailyQuest);
 	}
 
-	public void gotoGamePlay()
+	public void gotoGamePlay(string level)
 	{
-		Application.LoadLevel ("sceneGamePlay");
+		GameManager.instance.setLevel (level);
+		Application.LoadLevel (Define.sceneGamePlay);
 	}
 }
