@@ -98,7 +98,7 @@ public class Attributes : MonoBehaviour {
 	public const int HP_BOM	= 1;
 
 	public static int[,] BOM_ATT = new int[TOTAL_LEVEL_BOM, TOTAL_BOM_ATT] {
-		{ 1, 5 },
+		{ 1, 3 },
 		{ 1, 10 }
 	};
 
@@ -108,7 +108,7 @@ public class Attributes : MonoBehaviour {
 	public const int HP_BOM_BULLET	= 1;
 
 	public static int[,] BOM_BULLET_ATT = new int[TOTAL_LEVEL_BOM_BULLET, TOTAL_BOM_BULLET_ATT] {
-		{ 1, 5 },
+		{ 1, 3 },
 		{ 1, 10 }
 	};
 
@@ -118,7 +118,7 @@ public class Attributes : MonoBehaviour {
 	public const int HP_BOX	= 1;
 
 	public static int[,] BOX_ATT = new int[TOTAL_LEVEL_BOX, TOTAL_BOX] {
-		{ 1, 5 },
+		{ 1, 3 },
 		{ 1, 10 }
 	};
 
@@ -128,7 +128,7 @@ public class Attributes : MonoBehaviour {
 	public const int HP_CANON	= 1;
 
 	public static int[,] CANON_ATT = new int[TOTAL_LEVEL_CANON, TOTAL_CANON] {
-		{ 1, 5 },
+		{ 1, 3 },
 		{ 1, 10 }
 	};
 
@@ -138,7 +138,7 @@ public class Attributes : MonoBehaviour {
 	public const int HP_ROCKET	= 1;
 
 	public static int[,] ROCKET_ATT = new int[TOTAL_LEVEL_ROCKET, TOTAL_ROCKET] {
-		{ 1, 5 },
+		{ 1, 3 },
 		{ 1, 10 }
 	};
 
@@ -148,7 +148,7 @@ public class Attributes : MonoBehaviour {
 	public const int HP_SPECIAL	= 1;
 
 	public static int[,] SPECIAL_ATT = new int[TOTAL_LEVEL_SPECIAL, TOTAL_SPECIAL] {
-		{ 1, 5 },
+		{ 1, 3 },
 		{ 1, 10 }
 	};
 
@@ -170,52 +170,52 @@ public class Attributes : MonoBehaviour {
 
 	public static int[,] E1_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   0,   0,   0,  12,   1, 0 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
+		{ 5,   0,   0,   0,  3,   1, 0 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E2_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 7,   0,   0,   0,   10,   2, 0 },
+		{ 7,   0,   0,   0,   3,   2, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E3_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   1,   1,   1,   12,   3, 1 },
+		{ 5,   1,   1,   1,   3,   3, 1 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E4_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   0,   0,   0,   15,   4, 0 },
+		{ 5,   0,   0,   0,   3,   4, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E5_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   0,   0,   0,   11,   1, 0 },
+		{ 5,   0,   0,   0,   4,   1, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E6_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 2,   0,   0,   0,   12,   1, 0 },
+		{ 2,   0,   0,   0,   4,   1, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E7_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 1,   1,   1,   1,   18,   1, 1 },
+		{ 1,   1,   1,   1,   4,   1, 1 },
 		{ 0,   0,   0,   0,   0,   0, 0}
 	};
 	public static int[,] E8_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 1,   1,   1,   1,   18,   1, 2 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
+		{ 1,   1,   1,   1,   4,   1, 2 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
 		{ 0,   0,   0,   0,   0,   0, 0}
 	};
     public static int[,] E9_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 1,   1,   1,   1,   18,   1, 2 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
+		{ 1,   1,   1,   1,   4,   1, 2 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
 		{ 0,   0,   0,   0,   0,   0, 0}
 	};
 	public static int[,] E10_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 1,   1,   1,   1,  18,   1, 2 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
+		{ 1,   1,   1,   1,  4,   1, 2 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
 		{ 0,   0,   0,   0,   0,   0, 0}
 	};
 
