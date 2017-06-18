@@ -19,8 +19,9 @@ public class Enemy : MonoBehaviour {
 	protected Vector3 targetMove;
 
 	protected float timeCounter;
-	protected int Speed;
+	protected float Speed;
 	protected int HP;
+	protected float SpeedBulletShot;
 
 	// Update is called once per frame
 	void Update () {

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class E3 : Enemy {
+	public GameObject bullet;
+	public GameObject posBullet;
+	bool canShoot = true;
 	// Properties
 	void Awake() {
 		Define.DIRECTION_ENEMIES directionMove = Define.DIRECTION_ENEMIES.TOP_BOTTOM;
@@ -15,6 +18,7 @@ public class E3 : Enemy {
 		}
 		Speed = Attributes.E3_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP 	  = Attributes.E3_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
+		SpeedBulletShot = Attributes.E3_ATT [levelEnemy - 1, Attributes.SPEED_BULLET_ENEMY];
 	}
 
 
@@ -31,8 +35,10 @@ public class E3 : Enemy {
 			timeAction -= Time.deltaTime;
 			return;
 		}*/
-		if(Time.timeSinceLevelLoad > timeAction)
+		if (Time.timeSinceLevelLoad <= timeAction)
+			return;
 			DirectionMove ();
+		EnemyShot ();
 	}
 
 	void DirectionMove()
@@ -47,6 +53,18 @@ public class E3 : Enemy {
 			break;
 		}
 		transform.position = targetMove;
+	}
+	public void EnemyShot()
+	{
+		if(canShoot)
+			StartCoroutine (shoot());
+	}
+
+	IEnumerator shoot() {
+		canShoot = false;
+		yield return new WaitForSeconds (SpeedBulletShot);
+		Instantiate (bullet, posBullet.transform.position, Quaternion.identity);			
+		canShoot = true;
 	}
 
 }

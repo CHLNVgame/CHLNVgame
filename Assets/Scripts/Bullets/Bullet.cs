@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 	public float Speed;
 	//private float Attack;
-	private Rigidbody2D bodyBullet;
+	protected Rigidbody2D bodyBullet;
 	// Use this for initialization
 	void Start () {
 		bodyBullet = GetComponent<Rigidbody2D> ();
@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		bodyBullet.velocity = new Vector2 (bodyBullet.velocity.x, Speed);
+		BulletShot ();
 	}
 
 	void OnTriggerEnter2D(Collider2D target) {
@@ -23,5 +23,9 @@ public class Bullet : MonoBehaviour {
 		if (target.tag == "Enemy" || target.tag == "Boss") {
 			Destroy (gameObject);
 		}
+	}
+	void BulletShot()
+	{
+		bodyBullet.velocity = new Vector2 (bodyBullet.velocity.x, Speed);
 	}
 }
