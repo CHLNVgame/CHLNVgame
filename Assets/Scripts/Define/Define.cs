@@ -11,13 +11,11 @@ public class Define : MonoBehaviour {
 	public const int ZERO = 0;
 
 	// Array properties enemies.
-
 	public static Vector3 LEFT_BOT_POS = new Vector3(-1,0,0);
 	public static Vector3 RIGHT_BOT_POS = new Vector3(1,0,0);
 
-
-
 	// Move Direction
+	public const float REACH_DISTANCE = 0.1f;
 	public enum DIRECTION_ENEMIES {
 		TOP_BOTTOM =1,
 		RIGHT_LEFT,
