@@ -7,8 +7,13 @@ public class E6 : Enemy {
 	private float timeChase = 4.0f;
 	private bool activeChase = false;
 
+	public GameObject pathFollowPrefab;
+	private Transform[] Nodes;
+	private int currNode;
+	private Vector3 currPossitionNode;
+
 	void Awake()
-	{
+	{	
 		if (directionMove == Define.DIRECTION_ENEMIES.TOP_BOTTOM) {
 			transform.Rotate (0, 0, 180f);
 		} else if (directionMove == Define.DIRECTION_ENEMIES.RIGHT_LEFT) {
@@ -22,56 +27,54 @@ public class E6 : Enemy {
 		HP    = Attributes.E6_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
 	}
 	void Start () {
-
+		
 		Health health = GetComponent<Health> ();
 		if(health != null)
 			health.SetHealth (HP);
 
 		tr_Player = GameObject.FindGameObjectWithTag ("Player").transform;
 		activeChase = true;
+
+		GameObject pathFollow = (GameObject)Instantiate (pathFollowPrefab, transform.position, transform.rotation);
+		Nodes = new Transform[pathFollowPrefab.transform.childCount];
+		for (int i = 0; i < Nodes.Length; i++) {
+			Nodes [i] = pathFollow.transform.GetChild (i);
+		}
+		currNode = 0;
+		CheckNode ();
+	}
+
+	void CheckNode()
+	{
+		if(currNode < Nodes.Length)
+			currPossitionNode = Nodes [currNode].position;
+	}
+
+	// Update is called once per frame
+	void PathFollow () {
+
+		if(Vector3.Distance(transform.position, currPossitionNode) <1f)
+		{
+			currNode ++;
+			CheckNode ();
+		}
+
+		Vector3 direction = currPossitionNode - transform.position;
+		float angle = Mathf.Atan2 (direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+		Quaternion rotation = Quaternion.AngleAxis (angle, Vector3.forward);
+		transform.rotation = Quaternion.Slerp (transform.rotation, rotation, Speed* Time.deltaTime);
+		transform.position += transform.up * Time.deltaTime*Speed;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (tr_Player != null &&Time.timeSinceLevelLoad > timeAction + timeChase)
+		if (currNode < Nodes.Length)
+			PathFollow ();
+		else
 			ChasePlayer ();
-		else if (Time.timeSinceLevelLoad > timeAction)
-			DirectionMove ();
-
 	}
-
-	void DirectionMove()
-	{
 		
-	//	Debug.Log (" Speed:  "+Speed);
-
-			targetMove = transform.position;
-
-			switch (directionMove) {
-			case  Define.DIRECTION_ENEMIES.TOP_BOTTOM:
-				targetMove.x = Mathf.Cos (Time.timeSinceLevelLoad) * Speed * Time.deltaTime + transform.position.x;
-				targetMove.y += Speed * Time.deltaTime;
-				break;
-
-			case Define.DIRECTION_ENEMIES.LEFT_RIGHT:
-				targetMove.x += Speed * Time.deltaTime;
-				targetMove.y = Mathf.Cos (Time.timeSinceLevelLoad) * Speed * Time.deltaTime + transform.position.y;
-				break;
-
-			case Define.DIRECTION_ENEMIES.RIGHT_LEFT:
-				targetMove.x -= Speed * Time.deltaTime;
-				targetMove.y = Mathf.Cos (Time.timeSinceLevelLoad) * Speed * Time.deltaTime + transform.position.y;
-				break;
-			}
-
-			Vector3 direction = targetMove - transform.position;
-			float angle = Mathf.Atan2 (direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-			Quaternion rotation = Quaternion.AngleAxis (angle, Vector3.forward);
-
-			transform.rotation = Quaternion.Slerp (transform.rotation, rotation, 2 * Speed * Time.deltaTime);
-			transform.position = new Vector3 (targetMove.x, targetMove.y, targetMove.z);
-	}
-
 	void ChasePlayer()
 	{
 		float distance = Vector3.Distance(tr_Player.position, transform.position);
