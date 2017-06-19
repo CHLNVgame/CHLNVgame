@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+public class BulletMc01 : MonoBehaviour {
 	public float Speed;
 	//private float Attack;
 	protected Rigidbody2D bodyBullet;
