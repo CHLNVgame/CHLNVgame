@@ -18,6 +18,7 @@ public class BulletEnemy : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D target) {
 		if (target.tag == "Player") {
 			Destroy (gameObject);
+			GamePlayController.instance.SetGameEndGame (true);
 			Destroy (target.gameObject);
 		}
 	}

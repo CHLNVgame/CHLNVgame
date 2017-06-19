@@ -58,8 +58,10 @@ public class Health : MonoBehaviour {
 
 	void DestroyObject()
 	{
-		if (gameObject.tag == "Boss")
-			GamePlayController.instance.ShowVictoryPanel();
+		if (gameObject.tag == "Boss") {
+			GamePlayController.instance.SetGameEndGame (true);
+			GamePlayController.instance.SetGameVictory (true);
+		}
 		Destroy (gameObject);
 		//int temp = Random.Range (0, ListEffectDestroy.Length);
 		Instantiate (ListEffectDestroy[0], transform.position, Quaternion.identity);
