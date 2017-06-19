@@ -21,7 +21,10 @@ public class Enemy : MonoBehaviour {
 	protected float timeCounter;
 	protected float Speed;
 	protected int HP;
-	protected float SpeedBulletShot;
+	protected int Damge;
+	protected int SpeedBulletShot;
+	protected float FireRate;
+
 
 	// Update is called once per frame
 	void Update () {

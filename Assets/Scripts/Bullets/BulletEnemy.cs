@@ -2,25 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletEnemy : MonoBehaviour {
-	public float Speed;
-	public float Angle = 0;
-	//protected Rigidbody2D bodyBullet;
+public class BulletEnemy : BulletManager {
 
-	// Use this for initialization
+	public float Angle = 0;
+
 	void Start () {		
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
 		BulletShot();
-	}
-	void OnTriggerEnter2D(Collider2D target) {
-		if (target.tag == "Player") {
-			Destroy (gameObject);
-			GamePlayController.instance.SetGameEndGame (true);
-			Destroy (target.gameObject);
-		}
 	}
 
 	void BulletShot()

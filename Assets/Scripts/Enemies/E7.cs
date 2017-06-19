@@ -22,6 +22,7 @@ public class E7 : Enemy {
 
 		Speed = Attributes.E7_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP    = Attributes.E7_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
+		Damge = Attributes.E7_ATT[levelEnemy - 1, Attributes.DAMGE_ENEMY];
 		SpeedBulletShot = Attributes.E3_ATT [levelEnemy - 1, Attributes.SPEED_BULLET_ENEMY];
 	}
 
@@ -29,7 +30,7 @@ public class E7 : Enemy {
 	void Start () {
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SetHealth (HP);
+			health.SeekHealthDamge (HP, Damge);
 	}
 
 	// Update is called once per frame

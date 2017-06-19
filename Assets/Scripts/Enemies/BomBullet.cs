@@ -7,6 +7,7 @@ public class BomBullet : MonoBehaviour {
 	public int Speed;
 	public float timeAction = 0f;
 	public int HP;
+	public int Damge;
 
 	private int level = 0;
 	// Use this for initialization
@@ -14,9 +15,11 @@ public class BomBullet : MonoBehaviour {
 	{
 		Speed = Attributes.BOM_BULLET_ATT [level, Attributes.SPEED_BOM_BULLET];
 		HP = Attributes.BOM_BULLET_ATT[level, Attributes.HP_BOM_BULLET];
+		Damge = Attributes.BOM_BULLET_ATT[level, Attributes.DAMGE_BOM_BULLET];
+
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SetHealth (HP);
+			health.SeekHealthDamge (HP, Damge);
 	}
 
     // Update is called once per frame

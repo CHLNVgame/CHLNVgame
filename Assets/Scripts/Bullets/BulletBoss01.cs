@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBoss01 : BulletEnemy {
+public class BulletBoss01 : BulletManager {
 	GameObject player;
 	Vector3 shotDirection;
-	// Use this for initialization
+
 	void Start () {
 		//bodyBullet = GetComponent<Rigidbody2D> ();
 		transform.Rotate (0, 0, Define.ANGLE_ROTATE_180);
@@ -19,12 +19,7 @@ public class BulletBoss01 : BulletEnemy {
 		BulletShot();
 
 	}
-	void OnTriggerEnter2D(Collider2D target) {
-		if (target.tag == "Player") {
-			Destroy (gameObject);
-			Destroy (target.gameObject);
-		}
-	}
+
 	void RotateToTarget(GameObject objTarget)
 	{
 		Vector3 direction = objTarget.transform.position - transform.position;

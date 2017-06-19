@@ -13,6 +13,7 @@ public class E4 : Enemy {
 		}
 		Speed = Attributes.E4_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP    = Attributes.E4_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
+		Damge = Attributes.E4_ATT[levelEnemy - 1, Attributes.DAMGE_ENEMY];
 	}
 
 
@@ -20,7 +21,7 @@ public class E4 : Enemy {
 	{
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SetHealth (HP);
+			health.SeekHealthDamge (HP, Damge);
 	}
 
 	// Update is called once per frame

@@ -25,12 +25,13 @@ public class E6 : Enemy {
 		}
 		Speed = Attributes.E6_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP    = Attributes.E6_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
+		Damge = Attributes.E6_ATT[levelEnemy - 1, Attributes.DAMGE_ENEMY];
 	}
 	void Start () {
 		
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SetHealth (HP);
+			health.SeekHealthDamge (HP, Damge);
 
 		tr_Player = GameObject.FindGameObjectWithTag ("Player").transform;
 		activeChase = true;

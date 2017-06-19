@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+	
 	public static Player Instance;
 
 	public Transform[] listGun;
@@ -18,6 +19,9 @@ public class Player : MonoBehaviour {
 	private int Damge;
 	private int DamgeSpecial;
 	private float FireRate;
+	private int SpeedBullet;
+	private int damgePerBullet;
+
 
 
 	private Rigidbody2D bodyPlayer; // Control Player
@@ -42,6 +46,7 @@ public class Player : MonoBehaviour {
 	private int idRightBot;
 
 	bool canShoot = true;
+
 	void Awake() {
 		if (Instance != null)
 			Destroy (gameObject);
@@ -73,11 +78,18 @@ public class Player : MonoBehaviour {
 		Damge = Attributes.PLANE_ATT[idPlane, Attributes.DAMGE_PLANE];
 		DamgeSpecial = Attributes.PLANE_ATT[idPlane, Attributes.DAMGE_SPEC_PLANE];
 		FireRate = (float ) 1 / Attributes.PLANE_ATT[idPlane, Attributes.FIRE_RATE_PLANE];
-		
+		SpeedBullet = Attributes.PLANE_ATT[idPlane, Attributes.SPEED_BULLET_PLANE];
+
+
+		Health health = GetComponent<Health> ();
+
+		if(health != null)
+			health.SeekHealthDamge (HP, damgePerBullet); // only add damge  but no use.
 	}
 
 	// Use this for initialization
 	void Start () {
+		damgePerBullet = Damge/listGun.Length;
 		anim = GetComponent<Animator> ();
 		bodyPlayer = GetComponent<Rigidbody2D> ();
 		Vector3 bounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f));
@@ -163,20 +175,17 @@ public class Player : MonoBehaviour {
 
 		for (int i = 0; i < listGun.Length; i++) 
 		{
-			Instantiate (bullet, listGun[i].position, Quaternion.identity);
+			GameObject bull = (GameObject) Instantiate (bullet, listGun[i].position, Quaternion.identity);
+	
+			BulletManager bulletmanager = bull.GetComponent<BulletManager> ();
+			if (bulletmanager != null) 
+				bulletmanager.SeekSpeedDamge (SpeedBullet, damgePerBullet, true);
 		}
 		yield return new WaitForSeconds (FireRate);
 		canShoot = true;
 	}
 		
-	void OnTriggerEnter2D(Collider2D target) {
-		if (target.tag == "Enemy") {
-			Destroy (target.gameObject);
-		}
-	}
-	public int GetAttack() {
-		return Damge;
-	}
+
 
 	void updateAnimPlane ()
 	{

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletShotToBottom : BulletEnemy {
+public class BulletShotToBottom : BulletManager {
 
+	public float Angle = 0f;
 	// Use this for initialization
 	void Start () {
 		//bodyBullet = GetComponent<Rigidbody2D> ();
@@ -16,7 +17,7 @@ public class BulletShotToBottom : BulletEnemy {
 	}
 	void BulletShot()
 	{
-		Debug.Log ("Shot To Bottom");
+	//	Debug.Log ("Shot To Bottom");
 		Vector3 pos = transform.position;
 		pos.x += Speed*Angle*Time.deltaTime;
 		pos.y -= Speed*Time.deltaTime;

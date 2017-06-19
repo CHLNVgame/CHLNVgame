@@ -7,6 +7,7 @@ public class Box : MonoBehaviour {
 	public int Speed;
 	public float timeAction = 0f;
 	public int HP;
+	public int Damge;
 
 	private int level = 0;
 	// Use this for initialization
@@ -14,9 +15,11 @@ public class Box : MonoBehaviour {
 	{
 		Speed = Attributes.BOX_ATT [level, Attributes.SPEED_BOX];
 		HP = Attributes.BOX_ATT[level, Attributes.HP_BOX];
+		Damge = Attributes.BOX_ATT[level, Attributes.DAMGE_BOX];
+
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SetHealth (HP);
+			health.SeekHealthDamge (HP, Damge);
 	}
 	
 	// Update is called once per frame

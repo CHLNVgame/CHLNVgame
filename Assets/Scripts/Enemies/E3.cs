@@ -18,7 +18,9 @@ public class E3 : Enemy {
 		}
 		Speed = Attributes.E3_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP 	  = Attributes.E3_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
+		Damge = Attributes.E3_ATT[levelEnemy - 1, Attributes.DAMGE_ENEMY];
 		SpeedBulletShot = Attributes.E3_ATT [levelEnemy - 1, Attributes.SPEED_BULLET_ENEMY];
+		FireRate = Attributes.E3_ATT [levelEnemy - 1, Attributes.FIRE_RATE_BULLET_ENEMY];
 	}
 
 
@@ -26,7 +28,7 @@ public class E3 : Enemy {
 	{
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SetHealth (HP);
+			health.SeekHealthDamge (HP, Damge);
 	}
 
 	// Update is called once per frame
@@ -62,8 +64,16 @@ public class E3 : Enemy {
 
 	IEnumerator shoot() {
 		canShoot = false;
-		yield return new WaitForSeconds (SpeedBulletShot);
-		Instantiate (bullet, posBullet.transform.position, Quaternion.identity);			
+		yield return new WaitForSeconds (FireRate);
+		GameObject bull = (GameObject) Instantiate (bullet, posBullet.transform.position, Quaternion.identity);	
+
+		BulletManager bulletmanager = bull.GetComponent<BulletManager> ();
+		if (bulletmanager != null) 
+		{
+			Debug.Log (" xxxxxxxxxxxxxxxxxxxx SpeedBulletShot: "+SpeedBulletShot);
+			bulletmanager.SeekSpeedDamge (SpeedBulletShot, Damge, false);
+		}
+
 		canShoot = true;
 	}
 

@@ -14,6 +14,7 @@ public class E2 : Enemy {
 		}
 		Speed = Attributes.E2_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP    = Attributes.E2_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
+		Damge = Attributes.E2_ATT[levelEnemy - 1, Attributes.DAMGE_ENEMY];
 	}
 
 
@@ -21,7 +22,7 @@ public class E2 : Enemy {
 	{
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SetHealth (HP);
+			health.SeekHealthDamge (HP, Damge);
 	}
 	// Use this for initialization
 

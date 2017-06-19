@@ -9,6 +9,7 @@ public class Canon : MonoBehaviour {
 	public int Speed;
 	public float timeAction = 0f;
 	public int HP;
+	public int Damge;
 
 	private int level = 0;
 
@@ -25,9 +26,11 @@ public class Canon : MonoBehaviour {
     {
 		Speed = Attributes.CANON_ATT [level, Attributes.SPEED_CANON];
 		HP = Attributes.CANON_ATT[level, Attributes.HP_CANON];
+		Damge = Attributes.CANON_ATT[level, Attributes.DAMGE_CANON];
+
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SetHealth (HP);
+			health.SeekHealthDamge (HP, Damge);
     }
 
     // Update is called once per frame

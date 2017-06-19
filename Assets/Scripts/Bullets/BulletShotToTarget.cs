@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletShotToTarget : BulletEnemy {
+public class BulletShotToTarget : BulletManager {
 	GameObject player;
 	Vector3 shotDirection;
 	// Use this for initialization
