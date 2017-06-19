@@ -12,10 +12,10 @@ public class Attributes : MonoBehaviour {
 	public const int TOTAL_LEVEL_UP_PLANE 	= 3;
 	public static int[] LEVEL_UP_PLANE = new int[TOTAL_LEVEL_UP_PLANE]{12, 2, 11};
 
-	public const int CLASS_C = 1;
-	public const int CLASS_B = 2;
-	public const int CLASS_A = 3;
-	public const int CLASS_S = 4;
+	public const int CLASS_C = 0;
+	public const int CLASS_B = 1;
+	public const int CLASS_A = 2;
+	public const int CLASS_S = 3;
 	public const int TOTAL_CLASS = 4;
 
 	public static int[] MAX_LEVEL_CLASS 	= new int[TOTAL_CLASS]{40,   60,  80, 100}; // CLASS_C  max level 40, CLASS_B max level 80 ....
@@ -33,23 +33,23 @@ public class Attributes : MonoBehaviour {
 
 	public static int[,] PLANE_ATT = new int[TOTAL_PLANE, TOTAL_PLANE_ATT]
 	{ 
-		{ 1,  210,  63, 152, 5 }, // 0 *** CLASS_PLANE, HP_PLANE, DAMGE_PLANE, DAMGE_SPEC_PLANE, FIRE_RATE_PLANE ***
-		{ 2,  293, 115, 146, 10},
-		{ 2,  639,  55, 165, 10},
-		{ 2,  403,  96, 165, 10},
-		{ 2,  499,  83, 134, 10}, 
-		{ 2,  162, 142, 134, 10}, // 5
-		{ 3,  483, 248, 152, 10},
-		{ 3,  408, 265, 142, 10},
-		{ 3,  489, 254, 134, 10},
-		{ 3,  885, 188, 128, 10}, 
-		{ 3,  884, 187, 130, 10}, // 10
-		{ 3,  408, 211, 418, 10},
-		{ 4, 1058, 215, 137, 10},
-		{ 4, 1064, 220, 121, 10},
-		{ 4, 1064, 220, 121, 10},
-		{ 4, 1052, 210, 153, 10}, // 15
-		{ 4, 1052, 210, 153, 10}
+		{ 0,  210,  63, 152, 5 }, // 0 *** CLASS_PLANE, HP_PLANE, DAMGE_PLANE, DAMGE_SPEC_PLANE, FIRE_RATE_PLANE ***
+		{ 1,  293, 115, 146, 10},
+		{ 1,  639,  55, 165, 10},
+		{ 1,  403,  96, 165, 10},
+		{ 1,  499,  83, 134, 10}, 
+		{ 1,  162, 142, 134, 10}, // 5
+		{ 2,  483, 248, 152, 10},
+		{ 2,  408, 265, 142, 10},
+		{ 2,  489, 254, 134, 10},
+		{ 2,  885, 188, 128, 10}, 
+		{ 2,  884, 187, 130, 10}, // 10
+		{ 2,  408, 211, 418, 10},
+		{ 3, 1058, 215, 137, 10},
+		{ 3, 1064, 220, 121, 10},
+		{ 3, 1064, 220, 121, 10},
+		{ 3, 1052, 210, 153, 10}, // 15
+		{ 3, 1052, 210, 153, 10}
 	};
 
 	// ************************ End Attribte Plane ************************
@@ -170,37 +170,37 @@ public class Attributes : MonoBehaviour {
 
 	public static int[,] E1_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   0,   0,   0,  3,   1, 0 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
+		{ 5,   0,   0,   0,  90,   1, 0 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, TYPE_BULLET_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E2_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 7,   0,   0,   0,   3,   2, 0 },
+		{ 8,   0,   0,   0,   90,   2, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E3_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   1,   1,   1,   3,   3, 1 },
+		{ 5,   1,   1,   1,   90,   3, 1 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E4_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   0,   0,   0,   3,   4, 0 },
+		{ 5,   0,   0,   0,   540,   4, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E5_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   0,   0,   0,   4,   1, 0 },
+		{ 5,   0,   0,   0,   45,   1, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E6_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 2,   0,   0,   0,   4,   1, 0 },
+		{ 2,   0,   0,   0,   90,   1, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E7_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 1,   1,   1,   1,   4,   1, 1 },
+		{ 1,   1,   1,   1,   600,   1, 1 },
 		{ 0,   0,   0,   0,   0,   0, 0}
 	};
 	public static int[,] E8_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]

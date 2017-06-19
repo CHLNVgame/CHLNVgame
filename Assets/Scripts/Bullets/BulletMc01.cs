@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour {
 	public float Speed;
 	//private float Attack;
 	protected Rigidbody2D bodyBullet;
+
+	private int damge;
 	// Use this for initialization
 	void Start () {
 		bodyBullet = GetComponent<Rigidbody2D> ();
@@ -14,6 +16,11 @@ public class Bullet : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		BulletShot ();
+	}
+
+	public void seekDamge (int amount)
+	{
+		damge = amount;
 	}
 
 	void OnTriggerEnter2D(Collider2D target) {
