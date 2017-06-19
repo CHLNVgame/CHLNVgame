@@ -63,7 +63,7 @@ public class E6 : Enemy {
 		float angle = Mathf.Atan2 (direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 		Quaternion rotation = Quaternion.AngleAxis (angle, Vector3.forward);
 		transform.rotation = Quaternion.Slerp (transform.rotation, rotation, Speed* Time.deltaTime);
-		transform.position += transform.up * Time.deltaTime*Speed;
+		transform.position += transform.up * Time.deltaTime*Speed*2;
 
 	}
 	
