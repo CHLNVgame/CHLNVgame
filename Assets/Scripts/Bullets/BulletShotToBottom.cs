@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BulletShotToBottom : BulletManager {
 
-	public float Angle = 0f;
-	// Use this for initialization
 	void Start () {
 		//bodyBullet = GetComponent<Rigidbody2D> ();
 		transform.Rotate (0, 0, Define.ANGLE_ROTATE_180);

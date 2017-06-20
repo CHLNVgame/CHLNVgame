@@ -27,15 +27,6 @@ public class Player : MonoBehaviour {
 	Vector2 posTouch, posTouchMove;
 	bool mouseControl = false;
 
-	private Animator anim;
-	bool turnLeft = false;
-	bool turnRight = false;
-	bool turnLeftBack = false;
-	bool turnRightBack = false;
-
-	string lastAnim;
-	string currAnim;
-
 	[SerializeField] private GameObject bullet = null;
 	[SerializeField] private GameObject[] ListBot = null;
 
@@ -88,7 +79,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		damgePerBullet = Damge/listGun.Length;
-		anim = GetComponent<Animator> ();
+
 		bodyPlayer = GetComponent<Rigidbody2D> ();
 		Vector3 bounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f));
 		Sprite spPlayer = GetComponent<SpriteRenderer> ().sprite;
@@ -98,8 +89,7 @@ public class Player : MonoBehaviour {
 		maxX = bounds.x + PlayerWidth;
 		minY = -bounds.y - PlayerHeight;
 		maxY = bounds.y + PlayerHeight;
-		lastAnim = "normal";
-		currAnim = "normal";
+
 	}
 
 	// Update is called once per frame
@@ -150,8 +140,6 @@ public class Player : MonoBehaviour {
 
 		} 
 
-		updateAnimPlane ();
-
 		Vector3 tempPosition = transform.position;
 		if (tempPosition.x < minX)
 			tempPosition.x = minX;
@@ -184,36 +172,6 @@ public class Player : MonoBehaviour {
 		}
 		yield return new WaitForSeconds (FireRate);
 		canShoot = true;
-	}
-		
-
-
-	void updateAnimPlane ()
-	{
-		if (moveX < 0) {
-			currAnim = "left";
-		} 
-
-		if(moveX > 0){
-			currAnim = "right";
-		}
-
-		if (moveX == 0) 
-		{
-			if (lastAnim.Equals("left"))
-			{
-				currAnim = "leftback";
-			}
-			if (lastAnim.Equals("right"))
-			{
-				currAnim = "rightback";
-			}
-		}
-		if (currAnim != lastAnim) 
-		{
-			lastAnim = currAnim;
-			anim.Play (currAnim);
-		}
 	}
 
 }
