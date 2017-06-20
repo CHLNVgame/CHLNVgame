@@ -1,13 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GamePlayController : MonoBehaviour {
     public static GamePlayController instance;
+
+	public Image healthBar;
     [SerializeField]
     private GameObject PausePanel, VictoryPanel, GameOver;
     private bool Victory = false;
 	private bool EndGame = false;
+	private int health;
+	private int totalHealth;
+
+	public void seekHP(int hp, bool firstHP)
+	{
+		health = hp;
+
+		if (firstHP)
+			totalHealth = hp;
+
+		if (healthBar != null)
+			healthBar.fillAmount = (float)health / totalHealth;
+	}
     void Awake()
     {
         MakeInstance();
@@ -78,4 +94,5 @@ public class GamePlayController : MonoBehaviour {
 		Time.timeScale = 1f;
 		Application.LoadLevel (Define.sceneMainMenu);
 	}
+
 }

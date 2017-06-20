@@ -74,6 +74,7 @@ public class Player : MonoBehaviour {
 
 		if(health != null)
 			health.SeekHealthDamge (HP, damgePerBullet); // only add damge  but no use.
+		GamePlayController.instance.seekHP (HP, true);
 	}
 
 	// Use this for initialization

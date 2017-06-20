@@ -61,24 +61,25 @@ public class Health : MonoBehaviour {
 	public void TakeDame(int amount)
 	{
 		HP -= amount;
-
-	//	if (gameObject.tag == "Player")
-			//Debug.Log ("  +++++++++++++ HP: "+HP);
-
-		if (HP <= 0 || amount == -1) 
-		{
-			DestroyObject ();
-			return;
+		if (HP < 0)
+			HP = 0;
+		
+		if (gameObject.tag == "Player") {
+			GamePlayController.instance.seekHP (HP, false);
 		}
-	//	//Debug.Log (" 111111111111111111 HP: "+HP);
-
-		if (gameObject.tag != "Player") 
+		else
 		{
 			if (activeHealthBar != null)
 				activeHealthBar.gameObject.SetActive (true);
 //			//Debug.Log (" 22222222222222222 ");
 			if (healthBar != null)
 				healthBar.fillAmount = (float)HP / totalHP;
+		}
+
+		if (HP <= 0 || amount == -1) 
+		{
+			DestroyObject ();
+			return;
 		}
 	}
 
