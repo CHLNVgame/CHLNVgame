@@ -14,14 +14,14 @@ public class BulletE7 : BulletManager {
 		
 	void BulletShot()
 	{
-		//Debug.Log ("Shot");
+		////Debug.Log ("Shot");
 		//bodyBullet.velocity = new Vector2 (bodyBullet.velocity.x+0.1f, -Speed);
 		Vector3 pos = transform.position;
 		pos.x += Speed*Angle*Time.deltaTime;
 		pos.y -= Speed*Time.deltaTime;
 		transform.position = pos; 
-		Debug.Log ( " posX: "+pos.x);
-		Debug.Log ( " posY: "+pos.y);
-		Debug.Log ( " Speed: "+Speed);
+		//Debug.Log ( " posX: "+pos.x);
+		//Debug.Log ( " posY: "+pos.y);
+		//Debug.Log ( " Speed: "+Speed);
 	}
 }

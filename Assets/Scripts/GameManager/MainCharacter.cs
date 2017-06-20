@@ -105,7 +105,7 @@ public class MainCharacter : MonoBehaviour {
 
 	public void Save()
 	{
-	//	Debug.Log (" ++++++++++++ Save Data +++++++++++++++");
+	//	//Debug.Log (" ++++++++++++ Save Data +++++++++++++++");
 		data.MC_Gold = MC_Gold;
 		data.MC_Ruby = MC_Ruby;
 		data.MC_PlaneID = MC_PlaneID;
@@ -127,7 +127,7 @@ public class MainCharacter : MonoBehaviour {
 
 	public void Load()
 	{
-	//	Debug.Log (" ++++++++++++ Load Data +++++++++++++++");
+	//	//Debug.Log (" ++++++++++++ Load Data +++++++++++++++");
 		data = RMS.Load ();
 		if (data != null) {
 			MC_Gold = data.MC_Gold;

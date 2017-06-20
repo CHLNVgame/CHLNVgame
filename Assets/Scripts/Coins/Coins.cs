@@ -18,7 +18,7 @@ public class Coins : MonoBehaviour {
 		
 		if (player != null) {
 			float distance = Vector3.Distance (transform.position, player.transform.position);
-			Debug.Log (distance);
+		//	//Debug.Log (distance);
 			if (distance <= Define.DISTANCE_COIN_PLAYER) {
 				speed += Define.SPEED_COIN_PLAYER;
 				transform.position = Vector3.MoveTowards (transform.position, player.transform.position, speed * Time.deltaTime);

@@ -46,7 +46,7 @@ public class E3 : Enemy {
 	void DirectionMove()
 	{
 
-	//	Debug.Log (" Speed:  "+Speed);
+	//	//Debug.Log (" Speed:  "+Speed);
 		targetMove = transform.position;
 
 		switch (directionMove) {
@@ -70,7 +70,7 @@ public class E3 : Enemy {
 		BulletManager bulletmanager = bull.GetComponent<BulletManager> ();
 		if (bulletmanager != null) 
 		{
-			Debug.Log (" xxxxxxxxxxxxxxxxxxxx SpeedBulletShot: "+SpeedBulletShot);
+	//		//Debug.Log (" xxxxxxxxxxxxxxxxxxxx SpeedBulletShot: "+SpeedBulletShot);
 			bulletmanager.SeekSpeedDamge (SpeedBulletShot, Damge, false);
 		}
 

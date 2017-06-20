@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-	
-	public static Player Instance;
 
 	public Transform[] listGun;
 //	public Transform midGun;
@@ -45,16 +43,12 @@ public class Player : MonoBehaviour {
 	private int idLeftBot;
 	private int idRightBot;
 
+	private BotPlayer leftBotPlayer;
+	private BotPlayer rightBotPlayer;
+
 	bool canShoot = true;
 
 	void Awake() {
-		if (Instance != null)
-			Destroy (gameObject);
-		else {
-			Instance = this;
-			DontDestroyOnLoad (gameObject);
-		}
-
 
 		InitPlayer ();
 
@@ -67,11 +61,15 @@ public class Player : MonoBehaviour {
 		idLeftBot  = MainCharacter.instance.getBotLeftID ();
 		idRightBot = MainCharacter.instance.getBotRightID ();
 
-		if(idLeftBot != -1)
-			Instantiate (ListBot[idLeftBot], Define.LEFT_BOT_POS , Quaternion.identity);
+		if (idLeftBot != -1) {
+			GameObject leftObject = (GameObject) Instantiate (ListBot [idLeftBot], Define.LEFT_BOT_POS, Quaternion.identity);
+			leftBotPlayer = leftObject.GetComponent<BotPlayer> ();
+		}
 
-		if(idRightBot != -1)
-			Instantiate (ListBot[idRightBot], Define.RIGHT_BOT_POS, Quaternion.identity);
+		if (idRightBot != -1) {
+			GameObject rightObject = (GameObject) Instantiate (ListBot [idRightBot], Define.RIGHT_BOT_POS, Quaternion.identity);
+			rightBotPlayer = rightObject.GetComponent<BotPlayer> ();
+		}
 
 		ClassPlayer = Attributes.PLANE_ATT [idPlane, Attributes.CLASS_PLANE];
 		HP = Attributes.PLANE_ATT[idPlane, Attributes.HP_PLANE];
@@ -167,6 +165,9 @@ public class Player : MonoBehaviour {
             tempPosition.y += 1;
 
         transform.position = tempPosition;
+		leftBotPlayer.SeekPosition (leftBot);
+		rightBotPlayer.SeekPosition (rightBot);
+
 		if(canShoot)
 			StartCoroutine (shoot());
 	}

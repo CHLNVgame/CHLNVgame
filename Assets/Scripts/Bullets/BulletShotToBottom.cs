@@ -17,7 +17,7 @@ public class BulletShotToBottom : BulletManager {
 	}
 	void BulletShot()
 	{
-	//	Debug.Log ("Shot To Bottom");
+	//	//Debug.Log ("Shot To Bottom");
 		Vector3 pos = transform.position;
 		pos.x += Speed*Angle*Time.deltaTime;
 		pos.y -= Speed*Time.deltaTime;

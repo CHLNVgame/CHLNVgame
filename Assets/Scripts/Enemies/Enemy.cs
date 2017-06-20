@@ -28,14 +28,14 @@ public class Enemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        //Debug.Log(" timeSinceLevelLoad:  " + Time.timeSinceLevelLoad);
+        ////Debug.Log(" timeSinceLevelLoad:  " + Time.timeSinceLevelLoad);
         if (Time.timeSinceLevelLoad > timeAction)
 			DirectionMove ();
 	}
 
 	protected void DirectionMove()
 	{
-		//	Debug.Log (" Speed:  "+Speed);
+		//	//Debug.Log (" Speed:  "+Speed);
 		targetMove = transform.position;
 		switch (directionMove) {
 		case  Define.DIRECTION_ENEMIES.TOP_BOTTOM:

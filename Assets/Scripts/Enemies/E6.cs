@@ -79,7 +79,7 @@ public class E6 : Enemy {
 	void ChasePlayer()
 	{
 		float distance = Vector3.Distance(tr_Player.position, transform.position);
-	//	Debug.Log (" xxxxxxxxxxxxx  distance: "+distance);
+	//	//Debug.Log (" xxxxxxxxxxxxx  distance: "+distance);
 		if (distance > 6 && activeChase) {
 
 			Vector3 direction = tr_Player.position - transform.position;

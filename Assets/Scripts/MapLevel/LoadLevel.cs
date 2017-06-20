@@ -12,7 +12,7 @@ public class LoadLevel : MonoBehaviour {
 		if (GameManager.instance != null)
 			idLevel = GameManager.instance.level;
 		else {
-			Debug.Log (" GameManager is null so get default level = 0");
+			//Debug.Log (" GameManager is null so get default level = 0");
 			idLevel = 0;
 		}
 

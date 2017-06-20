@@ -196,32 +196,32 @@ public class Attributes : MonoBehaviour {
 
 	public static int[,] E1_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   0,   25,   0,  60,   1, 0 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, DAMGE_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
+		{ 4,   0,   25,   0,  60,   1, 0 }, // SPEED_ENEMY, TYPE_SHOOT_ENEMY, DAMGE_ENEMY, SPEED_BULLET_ENEMY, HP_ENEMY, BONUS_ENEMY, FIRE_RATE_BULLET_ENEMY
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E2_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 8,   0,   25,   0,   60,   2, 0 },
+		{ 6,   0,   25,   0,   60,   2, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E3_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   1,   25,   10,   60,   3, 1 },
+		{ 4,   1,   25,   10,   60,   3, 1 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E4_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   0,   25,   0,   540,   4, 0 },
+		{ 4,   0,   25,   0,   540,   4, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E5_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 5,   0,   25,   0,   45,   1, 0 },
+		{ 4,   0,   25,   0,   30,   1, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E6_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 2,   0,   25,   0,   60,   1, 0 },
+		{ 3,   0,   25,   0,   60,   1, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E7_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]

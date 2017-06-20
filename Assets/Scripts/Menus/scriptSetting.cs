@@ -24,7 +24,7 @@ public class scriptSetting : MonoBehaviour {
 
 	public void BackPreviousMenu()
 	{
-		Debug.Log (" +++++++++++ currState: "+currState);
+		//Debug.Log (" +++++++++++ currState: "+currState);
 		if (currState == 0) 
 		{
 			Application.LoadLevel ("sceneMainMenu");

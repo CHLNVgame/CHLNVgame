@@ -59,9 +59,9 @@ public class E7 : Enemy {
 				bulletmanager.SeekSpeedDamge (SpeedBulletShot, Damge, false);
 				int stt = i % 3;
 				if(i < 3)
-					bulletmanager.SeekAngle (stt== 0 ? -0.5f : (stt == 2 ? -0.4f : -0.3f));
+					bulletmanager.SeekAngle (stt== 0 ? -0.4f : (stt == 2 ? -0.3f : -0.2f));
 				else
-					bulletmanager.SeekAngle (stt== 0 ? 0.5f : (stt == 2 ? 0.4f : 0.3f));
+					bulletmanager.SeekAngle (stt== 0 ? 0.4f : (stt == 2 ? 0.3f : 0.2f));
 			}
 		}
 		yield return new WaitForSeconds (FireRate/2);

@@ -62,21 +62,21 @@ public class Health : MonoBehaviour {
 	{
 		HP -= amount;
 
-		if (gameObject.tag == "Player")
-			Debug.Log ("  +++++++++++++ HP: "+HP);
+	//	if (gameObject.tag == "Player")
+			//Debug.Log ("  +++++++++++++ HP: "+HP);
 
 		if (HP <= 0 || amount == -1) 
 		{
 			DestroyObject ();
 			return;
 		}
-	//	Debug.Log (" 111111111111111111 HP: "+HP);
+	//	//Debug.Log (" 111111111111111111 HP: "+HP);
 
 		if (gameObject.tag != "Player") 
 		{
 			if (activeHealthBar != null)
 				activeHealthBar.gameObject.SetActive (true);
-//			Debug.Log (" 22222222222222222 ");
+//			//Debug.Log (" 22222222222222222 ");
 			if (healthBar != null)
 				healthBar.fillAmount = (float)HP / totalHP;
 		}

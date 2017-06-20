@@ -22,7 +22,7 @@ public class GamePlayController : MonoBehaviour {
 	{
 		if (EndGame) {
 			EndGame = false;
-			Debug.Log ("EEEEEEEEEEEEEE");
+			//Debug.Log ("EEEEEEEEEEEEEE");
 			if (Victory) {
 				ShowVictoryPanel ();
 				Application.LoadLevel (Define.sceneMainMenu);
