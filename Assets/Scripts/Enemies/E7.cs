@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class E7 : Enemy {
-	public GameObject bulletLeftRound1;
-	public GameObject bulletRightRound1;
-	public GameObject bulletLeftRound2;
-	public GameObject bulletRightRound2;
-	public GameObject posBulletLeft;
-	public GameObject posBulletRight;
+
+	public GameObject bullet;
+	public Transform[] posBullets;
 	bool canShoot = true;
 	void Awake() {
 		Define.DIRECTION_ENEMIES directionMove = Define.DIRECTION_ENEMIES.TOP_BOTTOM;
@@ -23,7 +20,8 @@ public class E7 : Enemy {
 		Speed = Attributes.E7_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP    = Attributes.E7_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
 		Damge = Attributes.E7_ATT[levelEnemy - 1, Attributes.DAMGE_ENEMY];
-		SpeedBulletShot = Attributes.E3_ATT [levelEnemy - 1, Attributes.SPEED_BULLET_ENEMY];
+		SpeedBulletShot = Attributes.E7_ATT [levelEnemy - 1, Attributes.SPEED_BULLET_ENEMY];
+		FireRate = Attributes.E7_ATT [levelEnemy - 1, Attributes.FIRE_RATE_BULLET_ENEMY];
 	}
 
 	// Use this for initialization
@@ -49,12 +47,35 @@ public class E7 : Enemy {
 
 	IEnumerator shoot() {
 		canShoot = false;
-		yield return new WaitForSeconds (SpeedBulletShot);
-		Instantiate (bulletLeftRound1, posBulletLeft.transform.position, Quaternion.identity);			
-		Instantiate (bulletRightRound1, posBulletRight.transform.position, Quaternion.identity);
-		yield return new WaitForSeconds (SpeedBulletShot);
-		Instantiate (bulletLeftRound2, posBulletLeft.transform.position, Quaternion.identity);			
-		Instantiate (bulletRightRound2, posBulletRight.transform.position, Quaternion.identity);
+
+
+		yield return new WaitForSeconds (FireRate);
+
+		for (int i = 0; i < 6; i++) {
+			GameObject bull = (GameObject)Instantiate (bullet, posBullets[i < 3 ? 0 : 1].transform.position, Quaternion.identity);	
+			BulletManager bulletmanager = bull.GetComponent<BulletManager> ();
+			if (bulletmanager != null) 
+			{
+				bulletmanager.SeekSpeedDamge (SpeedBulletShot, Damge, false);
+				int stt = i % 3;
+				if(i < 3)
+					bulletmanager.SeekAngle (stt== 0 ? -0.5f : (stt == 2 ? -0.4f : -0.3f));
+				else
+					bulletmanager.SeekAngle (stt== 0 ? 0.5f : (stt == 2 ? 0.4f : 0.3f));
+			}
+		}
+		yield return new WaitForSeconds (FireRate/2);
+
+		for (int i = 0; i < 6; i++) {
+			GameObject bull = (GameObject)Instantiate (bullet, posBullets[i < 3 ? 0 : 1].transform.position, Quaternion.identity);	
+			BulletManager bulletmanager = bull.GetComponent<BulletManager> ();
+			if (bulletmanager != null) 
+			{
+				bulletmanager.SeekSpeedDamge (SpeedBulletShot, Damge, false);
+				int stt = i % 3;
+				bulletmanager.SeekAngle (stt== 0 ? -0.07f : (stt == 2 ? 0.07f : 0f));
+			}
+		}
 		canShoot = true;
 	}
 }

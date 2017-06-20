@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletManager : MonoBehaviour {
 
 	protected int Speed;
+	protected float Angle;
 	private int Damge;
 	private bool bulletPlayer;
 
@@ -15,6 +16,12 @@ public class BulletManager : MonoBehaviour {
 		bulletPlayer = bulletplayer;
 
 	}
+
+	public void SeekAngle(float amount)
+	{
+		Angle = amount;
+	}
+
 	void OnTriggerEnter2D(Collider2D target) {
 		if (bulletPlayer) {
 			if (target.tag == "DestroyBulletPlayer") {
@@ -30,6 +37,10 @@ public class BulletManager : MonoBehaviour {
 				Destroy (gameObject);
 			}
 		} else {
+			if (target.tag == "DestroyBulletEnemies") {
+				Destroy (gameObject);
+			}
+
 			if (target.tag == "Player") {
 				Destroy (gameObject);
 				Health health = target.GetComponent<Health> ();

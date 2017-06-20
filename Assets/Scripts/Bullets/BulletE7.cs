@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletEnemy : BulletManager {
-
-	public float Angle = 0;
+public class BulletE7 : BulletManager {
 
 	void Start () {		
 	}
 
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		BulletShot();
 	}
-
+		
 	void BulletShot()
 	{
 		//Debug.Log ("Shot");
@@ -22,5 +20,8 @@ public class BulletEnemy : BulletManager {
 		pos.x += Speed*Angle*Time.deltaTime;
 		pos.y -= Speed*Time.deltaTime;
 		transform.position = pos; 
+		Debug.Log ( " posX: "+pos.x);
+		Debug.Log ( " posY: "+pos.y);
+		Debug.Log ( " Speed: "+Speed);
 	}
 }
