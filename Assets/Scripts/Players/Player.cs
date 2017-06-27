@@ -13,12 +13,14 @@ public class Player : MonoBehaviour {
 	private float speedMoveKey = 2;
 
 	private int ClassPlayer;
+    private int Speed = 6;
 	private int HP;
 	private int Damge;
 	private int DamgeSpecial;
 	private float FireRate;
 	private int SpeedBullet;
 	private int damgePerBullet;
+
 
 
 
@@ -63,7 +65,7 @@ public class Player : MonoBehaviour {
 		}
 
 		ClassPlayer = Attributes.PLANE_ATT [idPlane, Attributes.CLASS_PLANE];
-		HP = Attributes.PLANE_ATT[idPlane, Attributes.HP_PLANE];
+        HP = Attributes.PLANE_ATT[idPlane, Attributes.HP_PLANE];
 		Damge = Attributes.PLANE_ATT[idPlane, Attributes.DAMGE_PLANE];
 		DamgeSpecial = Attributes.PLANE_ATT[idPlane, Attributes.DAMGE_SPEC_PLANE];
 		FireRate = (float ) 1 / Attributes.PLANE_ATT[idPlane, Attributes.FIRE_RATE_PLANE];
@@ -95,65 +97,67 @@ public class Player : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		moveX = Input.GetAxis ("Horizontal") * speedMoveKey; // Control by key A & D or Left right
-		moveY = Input.GetAxis ("Vertical") * speedMoveKey; // control by key W &S up down
-		bodyPlayer.velocity = new Vector2 (moveX, moveY); // Input velocity for Player.
+	//	moveX = Input.GetAxis ("Horizontal") * speedMoveKey; // Control by key A & D or Left right
+	//	moveY = Input.GetAxis ("Vertical") * speedMoveKey; // control by key W &S up down
+	//	bodyPlayer.velocity = new Vector2 (moveX, moveY); // Input velocity for Player.
+    /*
+        // Control by mouse;
+        if (Input.GetMouseButton (0)) {
+            posTouchMove = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+            //mouseControl = true;
+        }
+        if (Input.GetMouseButtonDown (0)) {
+            posTouch = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+            mouseControl = true;
+        }
+        if (Input.GetMouseButtonUp (0)) {
+            mouseControl = false;
+        }
 
-		// Control by mouse;
-		if (Input.GetMouseButton (0)) {
-			posTouchMove = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			//mouseControl = true;
-		}
-		if (Input.GetMouseButtonDown (0)) {
-			posTouch = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			mouseControl = true;
-		}
-		if (Input.GetMouseButtonUp (0)) {
-			mouseControl = false;
-		}
-		// dont use
-		//Control by Touch 
-		/*int nbTouches = Input.touchCount;
-		if (nbTouches > 0) {
-			Touch touch = Input.GetTouch (0);
-			TouchPhase phase = touch.phase;
-			switch(phase) {
-				case TouchPhase.Began:
-				break;
-				case TouchPhase.Moved:
-				break;
-				case TouchPhase.Stationary:
-				break;
-				case TouchPhase.Ended:
-				break;
-				case TouchPhase.Canceled:
-				break;
-			}
-		}*/
+        if (mouseControl) {
+            moveX = (posTouchMove.x - posTouch.x);
+            moveY = (posTouchMove.y - posTouch.y);
+            transform.Translate (moveX, moveY, 0, Space.World);
+            posTouch.x = posTouchMove.x;
+            posTouch.y = posTouchMove.y;
 
+        } 
 
-		if (mouseControl) {
-			moveX = (posTouchMove.x - posTouch.x);
-			moveY = (posTouchMove.y - posTouch.y);
-			transform.Translate (moveX, moveY, 0, Space.World);
-			posTouch.x = posTouchMove.x;
-			posTouch.y = posTouchMove.y;
+        Vector3 tempPosition = transform.position;
+        if (tempPosition.x < minX)
+            tempPosition.x = minX;
+        else if (tempPosition.x > maxX)
+            tempPosition.x = maxX;
+        if (tempPosition.y < minY)
+            tempPosition.y = minY;
+        else if (tempPosition.y > maxY)
+            tempPosition.y = maxY;
 
-		} 
-
-		Vector3 tempPosition = transform.position;
-		if (tempPosition.x < minX)
-			tempPosition.x = minX;
-		else if (tempPosition.x > maxX)
-			tempPosition.x = maxX;
-		if (tempPosition.y < minY)
-			tempPosition.y = minY;
-		else if (tempPosition.y > maxY)
-			tempPosition.y = maxY;
         if (GamePlayController.instance.GetGameVictory())
             tempPosition.y += 1;
 
         transform.position = tempPosition;
+        */
+        if (Input.GetMouseButton(0))
+        {
+            posTouch = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log(" x: " + posTouch.x + "    y: " + posTouch.y);
+            if (posTouch.y < -9)
+                posTouch.y = -9;
+            if (posTouch.y > 9)
+                posTouch.y = 9;
+
+            float offsetPos = 2;
+            if (posTouch.y <= -8)
+                offsetPos = (9 + posTouch.y)*2;
+            if (posTouch.y >= 7)
+                offsetPos = (9 - posTouch.y);
+            posTouch.y += offsetPos;
+            
+        }
+ 
+        transform.position = Vector3.Lerp(transform.position, posTouch, Time.deltaTime* Speed);
+
 		leftBotPlayer.SeekPosition (leftBot);
 		rightBotPlayer.SeekPosition (rightBot);
 

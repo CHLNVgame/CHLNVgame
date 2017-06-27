@@ -75,9 +75,10 @@ public class Define : MonoBehaviour {
 	public const string sceneContainer = "sceneContainer";
 	public const string sceneDailyQuest = "sceneDailyQuest";
 	public const string sceneGamePlay = "sceneGamePlay";
-	// Scenes End
+    public const string sceneLevel1 = "sceneLevel1";
+    // Scenes End
 
-	// Coins
-	public const float DISTANCE_COIN_PLAYER = 5.3f;
+    // Coins
+    public const float DISTANCE_COIN_PLAYER = 5.3f;
 	public const float SPEED_COIN_PLAYER = 2f;
 }

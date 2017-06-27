@@ -3,21 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletMc01 : BulletManager {
-	
 
-	protected Rigidbody2D bodyBullet;
-
-	void Start () {
-		bodyBullet = GetComponent<Rigidbody2D> ();
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-		BulletShot ();
-	}
-
-	void BulletShot()
+	void Update()
 	{
-		bodyBullet.velocity = new Vector2 (bodyBullet.velocity.x, Speed);
+        transform.Translate(Vector3.up * Speed * Time.deltaTime, Space.World);
 	}
 }
