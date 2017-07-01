@@ -15,7 +15,7 @@ public class Boss : MonoBehaviour {
 	// Flow move;
 	int pointMoveID = 0;
 	public PathFollow path;
-
+	public float rotationSpeed;
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -23,10 +23,12 @@ public class Boss : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Time.timeSinceLevelLoad <= timeAction)
-			return;
-		RotateToTarget (gunLeft, player);
-		RotateToTarget (gunRight, player);
+		/*if (Time.timeSinceLevelLoad <= timeAction)
+			return;*/
+		if (player != null) {
+			RotateToTarget (gunLeft, player);
+			RotateToTarget (gunRight, player);
+		}
 		DirectionMove ();
 		if(canShoot)
 			StartCoroutine (shoot());

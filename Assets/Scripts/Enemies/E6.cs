@@ -15,13 +15,13 @@ public class E6 : Enemy {
 	void Awake()
 	{	
 		if (directionMove == Define.DIRECTION_ENEMIES.TOP_BOTTOM) {
-			transform.Rotate (0, 0, 180f);
+			//transform.Rotate (0, 0, 180f);
 		} else if (directionMove == Define.DIRECTION_ENEMIES.RIGHT_LEFT) {
-			transform.Rotate (0, 0, 90f);
+			//transform.Rotate (0, 0, 90f);
 		}
 		else if (directionMove == Define.DIRECTION_ENEMIES.LEFT_RIGHT) 
 		{
-			transform.Rotate (0,0,270f);
+			//transform.Rotate (0,180f,0);
 		}
 		Speed = Attributes.E6_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP    = Attributes.E6_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
@@ -32,8 +32,9 @@ public class E6 : Enemy {
 		Health health = GetComponent<Health> ();
 		if(health != null)
 			health.SeekHealthDamge (HP, Damge);
-
-		tr_Player = GameObject.FindGameObjectWithTag ("Player").transform;
+		var player = GameObject.FindGameObjectWithTag ("Player");
+		if(player !=null)
+			tr_Player = GameObject.FindGameObjectWithTag ("Player").transform;
 		activeChase = true;
 
 		GameObject pathFollow = (GameObject)Instantiate (pathFollowPrefab, transform.position, transform.rotation);
@@ -64,7 +65,7 @@ public class E6 : Enemy {
 		float angle = Mathf.Atan2 (direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 		Quaternion rotation = Quaternion.AngleAxis (angle, Vector3.forward);
 		transform.rotation = Quaternion.Slerp (transform.rotation, rotation, Speed* Time.deltaTime);
-		transform.position += transform.up * Time.deltaTime*Speed*2;
+		transform.position += transform.up * Time.deltaTime*Speed*2f;
 
 	}
 	
@@ -72,7 +73,7 @@ public class E6 : Enemy {
 	void Update () {
 		if (currNode < Nodes.Length)
 			PathFollow ();
-		else
+		else if(tr_Player !=null)
 			ChasePlayer ();
 	}
 		

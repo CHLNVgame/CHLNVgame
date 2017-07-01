@@ -201,7 +201,7 @@ public class Attributes : MonoBehaviour {
 	};
 	public static int[,] E2_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]
 	{ 
-		{ 6,   0,   25,   0,   60,   2, 0 },
+		{ 5,   0,   25,   0,   60,   2, 0 },
 		{ 0,   0,   0,   0,   0,   0, 0 }
 	};
 	public static int[,] E3_ATT = new int[TOTAL_LEVEL_ENEMY, TOTAL_ENEMY_ATT]

@@ -4,16 +4,17 @@ using UnityEngine;
 //from Assets.Scripts.MapLevel.MapScroll;
 public class Box : MonoBehaviour {
 
-	public int Speed;
+	public float Speed;
 	public float timeAction = 0f;
 	public int HP;
 	public int Damge;
 
 	private int level = 0;
+	bool actived = false;
 	// Use this for initialization
 	void Start()
 	{
-		Speed = Attributes.BOX_ATT [level, Attributes.SPEED_BOX];
+		//Speed = Attributes.BOX_ATT [level, Attributes.SPEED_BOX];
 		HP = Attributes.BOX_ATT[level, Attributes.HP_BOX];
 		Damge = Attributes.BOX_ATT[level, Attributes.DAMGE_BOX];
 
@@ -24,7 +25,6 @@ public class Box : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.timeSinceLevelLoad > timeAction)
             DirectionMove();
     }
     protected void DirectionMove()
@@ -33,4 +33,10 @@ public class Box : MonoBehaviour {
         targetMove.y -= Speed * Time.deltaTime;
         transform.position = targetMove;
     }
+	void OnTriggerEnter2D(Collider2D target)
+	{
+		Debug.Log (target.tag);
+		if (target.tag == "DestroyEnemies")
+			Destroy (gameObject);
+	}
 }

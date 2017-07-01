@@ -9,8 +9,12 @@ public class BulletShotToTarget : BulletManager {
 	void Start () {
 		transform.Rotate (0, 0, Define.ANGLE_ROTATE_180);
 		player = GameObject.FindGameObjectWithTag ("Player");
-		RotateToTarget (player);
-		shotDirection = (player.transform.position-transform.position).normalized;
+		if (player != null) {
+			RotateToTarget (player);
+			shotDirection = (player.transform.position - transform.position).normalized;
+		} else {
+			shotDirection = transform.position.normalized;
+		}
 	}
 	
 	// Update is called once per frame

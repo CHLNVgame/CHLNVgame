@@ -33,19 +33,12 @@ public class E3 : Enemy {
 
 	// Update is called once per frame
 	void Update () {
-		/*if (timeAction > 0) {
-			timeAction -= Time.deltaTime;
-			return;
-		}*/
-		if (Time.timeSinceLevelLoad <= timeAction)
-			return;
-			DirectionMove ();
+		DirectionMove ();
 		EnemyShot ();
 	}
 
 	void DirectionMove()
 	{
-
 	//	//Debug.Log (" Speed:  "+Speed);
 		targetMove = transform.position;
 

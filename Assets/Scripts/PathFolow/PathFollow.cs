@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PathFollow : MonoBehaviour {
-
+	public float speed;
 	public Color rayColor = Color.white;
 	public List<Transform> path_Objects = new List<Transform>();
 	Transform[] array_Ojbects;
@@ -25,5 +25,9 @@ public class PathFollow : MonoBehaviour {
 				Gizmos.DrawSphere (pos, 0.3f);
 			}
 		}
+	}
+	void Update()
+	{
+		transform.position += Vector3.up * speed * Time.deltaTime;
 	}
 }

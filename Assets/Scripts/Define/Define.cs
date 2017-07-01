@@ -15,7 +15,7 @@ public class Define : MonoBehaviour {
 	public static Vector3 RIGHT_BOT_POS = new Vector3(1,0,0);
 
 	// Move Direction
-	public const float REACH_DISTANCE = 0.1f;
+	public const float REACH_DISTANCE = 0.5f;
 	public enum DIRECTION_ENEMIES {
 		TOP_BOTTOM =1,
 		RIGHT_LEFT,

@@ -33,9 +33,6 @@ public class E7 : Enemy {
 
 	// Update is called once per frame
 	void Update () {
-		if (Time.timeSinceLevelLoad <= timeAction)
-			return;
-			
 		DirectionMove ();
 		EnemyShot ();
 	}

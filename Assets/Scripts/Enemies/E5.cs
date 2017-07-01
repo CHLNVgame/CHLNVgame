@@ -19,11 +19,13 @@ public class E5 : Enemy {
 		Health health = GetComponent<Health> ();
 		if(health != null)
 			health.SeekHealthDamge (HP, Damge);
+		float max = Speed + 1;
+		float min = Speed - 1;
+		Speed = Random.Range (max, min);
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if(Time.timeSinceLevelLoad > timeAction)
 			DirectionMove ();
 	}
 
@@ -34,7 +36,7 @@ public class E5 : Enemy {
 		switch (directionMove) {
 		case  Define.DIRECTION_ENEMIES.DIAGONAL_LEFTTOP_RIGHTBOTTOM:
 			targetMove.x += Speed * Time.deltaTime;
-			targetMove.y -= Speed * Time.deltaTime;
+			targetMove.y -= Speed*0.5f * Time.deltaTime;
 			transform.position = targetMove;
 			break;
 		}

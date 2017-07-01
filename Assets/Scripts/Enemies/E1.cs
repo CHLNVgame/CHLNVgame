@@ -33,4 +33,5 @@ public class E1 : Enemy {
 		if(Time.fixedTime > timeAction)
 			DirectionMove ();
 	}*/
+
 }
