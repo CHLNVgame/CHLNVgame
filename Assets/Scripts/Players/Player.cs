@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
 
 	private int ClassPlayer;
     private int Speed = 6;
+	private int SpeedAuto = 0;
 	private int HP;
 	private int Damge;
 	private int DamgeSpecial;
@@ -40,10 +41,12 @@ public class Player : MonoBehaviour {
 	private BotPlayer rightBotPlayer;
 
 	bool canShoot = true;
-
+	float timerControl;
+	float timerStart;
+	Vector3 possStart;
 	void Awake() {
 
-		InitPlayer ();
+		//InitPlayer ();
 
 	}
 
@@ -80,7 +83,8 @@ public class Player : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start () {		
+		InitPlayer ();
 		damgePerBullet = Damge/listGun.Length;
 
 		bodyPlayer = GetComponent<Rigidbody2D> ();
@@ -92,7 +96,8 @@ public class Player : MonoBehaviour {
 		maxX = bounds.x + PlayerWidth;
 		minY = -bounds.y - PlayerHeight;
 		maxY = bounds.y + PlayerHeight;
-
+		timerStart = Time.time + Define.GAMEPLAY_TIMER_START;
+		possStart = transform.position;
 	}
 
 	// Update is called once per frame
@@ -133,34 +138,33 @@ public class Player : MonoBehaviour {
         else if (tempPosition.y > maxY)
             tempPosition.y = maxY;
 
-        if (GamePlayController.instance.GetGameVictory())
-            tempPosition.y += 1;
-
         transform.position = tempPosition;
         */
-        if (Input.GetMouseButton(0))
-        {
-            posTouch = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(" x: " + posTouch.x + "    y: " + posTouch.y);
-            if (posTouch.y < -9)
-                posTouch.y = -9;
-            if (posTouch.y > 9)
-                posTouch.y = 9;
-
-            float offsetPos = 2;
-            if (posTouch.y <= -8)
-                offsetPos = (9 + posTouch.y)*2;
-            if (posTouch.y >= 7)
-                offsetPos = (9 - posTouch.y);
-            posTouch.y += offsetPos;
-            
-        }
- 
-        transform.position = Vector3.Lerp(transform.position, posTouch, Time.deltaTime* Speed);
-
 		leftBotPlayer.SeekPosition (leftBot);
 		rightBotPlayer.SeekPosition (rightBot);
+		if (Time.time < timerStart || GamePlayController.instance.GetGameVictory ()) {
+			possStart.y += SpeedAuto * Time.deltaTime;
+			SpeedAuto++;
+			transform.position = possStart;
+			return;
+		}
 
+		if (Input.GetMouseButton (0)) {
+			posTouch = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			Debug.Log (" x: " + posTouch.x + "    y: " + posTouch.y);
+			if (posTouch.y < -9)
+				posTouch.y = -9;
+			if (posTouch.y > 9)
+				posTouch.y = 9;
+
+			float offsetPos = 2;
+			if (posTouch.y <= -8)
+				offsetPos = (9 + posTouch.y) * 2;
+			if (posTouch.y >= 7)
+				offsetPos = (9 - posTouch.y);
+			posTouch.y += offsetPos;
+			transform.position = Vector3.Lerp (transform.position, posTouch, Time.deltaTime * Speed);
+		}
 		if(canShoot)
 			StartCoroutine (shoot());
 	}

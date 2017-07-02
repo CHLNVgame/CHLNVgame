@@ -8,12 +8,13 @@ public class GamePlayController : MonoBehaviour {
 
 	public Image healthBar;
     [SerializeField]
-    private GameObject PausePanel, VictoryPanel, GameOver;
+    private GameObject PausePanel, VictoryPanel, GameOver, GetReady;
     private bool Victory = false;
 	private bool EndGame = false;
 	private int health;
 	private int totalHealth;
-
+	private float timeVictory;
+	float timerStart;
 	public void seekHP(int hp, bool firstHP)
 	{
 		health = hp;
@@ -34,17 +35,28 @@ public class GamePlayController : MonoBehaviour {
             instance = this;
 		//DontDestroyOnLoad ();
     }
+	void Start () {	
+		timerStart = Time.time + Define.GAMEPLAY_TIMER_START;
+	}
 	void Update()
 	{
 		if (EndGame) {
-			EndGame = false;
+			//EndGame = false;
 			//Debug.Log ("EEEEEEEEEEEEEE");
 			if (Victory) {
-				ShowVictoryPanel ();
-				Application.LoadLevel (Define.sceneMainMenu);
+				if (Time.time > timeVictory) {
+					ShowVictoryPanel ();
+				}
+				if (Time.time > timeVictory + Define.GAMEPLAY_TIMER_DELAY)
+					Application.LoadLevel (Define.sceneMainMenu);
 			} else {
 				ShowGameOver ();
 			}
+		}
+		if (Time.time > timerStart && Time.time < timerStart + Define.GAMEPLAY_TIMER_DELAY) {
+			ShowGetReady ();
+		} else {
+			HideGetReady ();
 		}
 	}
 	public void PauseGame()
@@ -68,11 +80,13 @@ public class GamePlayController : MonoBehaviour {
 
 	public void SetGameVictory(bool bVictory)
 	{
+		if (bVictory)
+			timeVictory = Time.time + Define.GAMEPLAY_TIMER_DELAY;
 		Victory = bVictory;
 	}
     public bool GetGameVictory()
     {
-        return Victory;
+		return Victory && (Time.time > timeVictory);
     }
 	public void SetGameEndGame(bool bEndGame)
 	{
@@ -94,5 +108,12 @@ public class GamePlayController : MonoBehaviour {
 		Time.timeScale = 1f;
 		Application.LoadLevel (Define.sceneMainMenu);
 	}
-
+	public void ShowGetReady()
+	{
+		GetReady.SetActive (true);
+	}
+	public void HideGetReady()
+	{
+		GetReady.SetActive (false);
+	}
 }

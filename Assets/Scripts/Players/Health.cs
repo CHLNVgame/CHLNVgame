@@ -14,7 +14,7 @@ public class Health : MonoBehaviour {
 	private int totalHP;
 
 	[SerializeField] private GameObject[] ListEffectDestroy = null;
-
+	[SerializeField] private GameObject[] Items = null;
 	void Start()
 	{
 		// Only enemy have health bar
@@ -91,10 +91,21 @@ public class Health : MonoBehaviour {
 			GamePlayController.instance.SetGameEndGame (true);
 			GamePlayController.instance.SetGameVictory (true);
 		}
+		if(gameObject.tag == "Enemy")
+			
 		Destroy (gameObject);
 		//int temp = Random.Range (0, ListEffectDestroy.Length);
 		if(ListEffectDestroy[0] != null)
 			Instantiate (ListEffectDestroy[0], transform.position, Quaternion.identity);
+		if (Items != null) {
+			for (int i = 0; i < Items.Length; i++) {
+				Vector3 pos = transform.position;
+				float max = pos.x + 1;
+				float min = pos.x - 1;
+				pos.x = Random.Range (min, max);
+				Instantiate (Items[i], pos, Quaternion.identity);
+			}
+		}
 	}
 
 }

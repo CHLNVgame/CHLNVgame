@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Coins : MonoBehaviour {
 	float speed;
-	public float minSpeed = 0.1f;
-	public float maxSpeed = 1f;
+	public float minSpeed = 1f;
+	public float maxSpeed = 2f;
 	GameObject player;
+	protected Vector3 targetMove;
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		speed = Random.Range (minSpeed, maxSpeed);
+		targetMove = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -21,13 +23,14 @@ public class Coins : MonoBehaviour {
 		//	//Debug.Log (distance);
 			if (distance <= Define.DISTANCE_COIN_PLAYER) {
 				speed += Define.SPEED_COIN_PLAYER;
-				transform.position = Vector3.MoveTowards (transform.position, player.transform.position, speed * Time.deltaTime);
+				targetMove = Vector3.MoveTowards (transform.position, player.transform.position, speed * Time.deltaTime);
 			} else {
-				transform.position -= Vector3.up * speed * Time.deltaTime;
+				targetMove.y -= speed * Time.deltaTime;
 			}
 		} else {
-			transform.position -= Vector3.up * speed * Time.deltaTime;
+			targetMove.y -= speed * Time.deltaTime;
 		}
+		transform.position = targetMove;
 	}
 
 	void OnTriggerEnter2D(Collider2D target) {
