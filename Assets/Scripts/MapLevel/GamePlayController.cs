@@ -13,7 +13,7 @@ public class GamePlayController : MonoBehaviour {
 	private bool EndGame = false;
 	private int health;
 	private int totalHealth;
-	private float timeVictory;
+	private float timeDelay;
 	float timerStart;
 	public void seekHP(int hp, bool firstHP)
 	{
@@ -37,20 +37,25 @@ public class GamePlayController : MonoBehaviour {
     }
 	void Start () {	
 		timerStart = Time.time + Define.GAMEPLAY_TIMER_START;
+
 	}
 	void Update()
 	{
+		CheckGameVictory ();
+		CheckGameOver ();
 		if (EndGame) {
 			//EndGame = false;
-			//Debug.Log ("EEEEEEEEEEEEEE");
+
 			if (Victory) {
-				if (Time.time > timeVictory) {
+				if (Time.time > timeDelay) {
 					ShowVictoryPanel ();
 				}
-				if (Time.time > timeVictory + Define.GAMEPLAY_TIMER_DELAY)
+				if (Time.time > timeDelay + Define.GAMEPLAY_TIMER_DELAY)
 					Application.LoadLevel (Define.sceneMainMenu);
 			} else {
-				ShowGameOver ();
+				if (Time.time > timeDelay) {
+					ShowGameOver ();
+				}
 			}
 		}
 		if (Time.time > timerStart && Time.time < timerStart + Define.GAMEPLAY_TIMER_DELAY) {
@@ -81,15 +86,16 @@ public class GamePlayController : MonoBehaviour {
 	public void SetGameVictory(bool bVictory)
 	{
 		if (bVictory)
-			timeVictory = Time.time + Define.GAMEPLAY_TIMER_DELAY;
+			timeDelay = Time.time + Define.GAMEPLAY_TIMER_DELAY;
 		Victory = bVictory;
 	}
     public bool GetGameVictory()
     {
-		return Victory && (Time.time > timeVictory);
+		return Victory && (Time.time > timeDelay);
     }
 	public void SetGameEndGame(bool bEndGame)
 	{
+		timeDelay = Time.time + Define.GAMEPLAY_TIMER_DELAY;
 		EndGame = bEndGame;
 	}
 	public bool GetEndGame()
@@ -115,5 +121,20 @@ public class GamePlayController : MonoBehaviour {
 	public void HideGetReady()
 	{
 		GetReady.SetActive (false);
+	}
+	void CheckGameVictory()
+	{
+		GameObject boss = GameObject.FindGameObjectWithTag ("Boss");
+		if (boss == null && !Victory) {
+			SetGameEndGame (true);
+			SetGameVictory (true);
+		}
+	}
+	void CheckGameOver()
+	{
+		GameObject player = GameObject.FindGameObjectWithTag ("Player");
+		if (player == null && !EndGame) {			
+			SetGameEndGame (true);
+		}
 	}
 }

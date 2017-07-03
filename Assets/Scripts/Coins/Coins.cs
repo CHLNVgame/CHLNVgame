@@ -34,7 +34,7 @@ public class Coins : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D target) {
-		if (target.tag == "Player") {
+		if (target.tag == "Player" || target.tag == "DestroyItems") {
 			Destroy (gameObject);
 		}
 	}
