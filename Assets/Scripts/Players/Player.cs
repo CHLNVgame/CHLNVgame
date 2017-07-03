@@ -151,18 +151,15 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetMouseButton (0)) {
 			posTouch = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			Debug.Log (" x: " + posTouch.x + "    y: " + posTouch.y);
-			if (posTouch.y < -9)
-				posTouch.y = -9;
-			if (posTouch.y > 9)
-				posTouch.y = 9;
+            Vector2 posViewPort = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
-			float offsetPos = 2;
-			if (posTouch.y <= -8)
-				offsetPos = (9 + posTouch.y) * 2;
-			if (posTouch.y >= 7)
-				offsetPos = (9 - posTouch.y);
+            float offsetPos;
+		    if (posViewPort.y <= 0.5f)
+				offsetPos = posViewPort.y * 4;
+            else
+                offsetPos = 4 - posViewPort.y * 4;
 			posTouch.y += offsetPos;
+
 			transform.position = Vector3.Lerp (transform.position, posTouch, Time.deltaTime * Speed);
 		}
 		if(canShoot)
