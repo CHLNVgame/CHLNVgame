@@ -25,7 +25,7 @@ public class Box : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            DirectionMove();
+         //   DirectionMove();
     }
     protected void DirectionMove()
     {

@@ -7,6 +7,7 @@ public class Health : MonoBehaviour {
 
 	public Image healthBar;
     public Material hurtMaterial;
+    public GameObject poitLight;
 
 	private Transform activeHealthBar;
 
@@ -88,12 +89,14 @@ public class Health : MonoBehaviour {
 		}
 
         gameObject.GetComponent<SpriteRenderer>().material = hurtMaterial;
-        Invoke("ReturnNormalMaterial", 0.1f);
+        poitLight.SetActive(true);
+        Invoke("ReturnNormalMaterial", 0.2f);
 	}
 
     void ReturnNormalMaterial()
     {
         gameObject.GetComponent<SpriteRenderer>().material = normalMaterial;
+        poitLight.SetActive(false);
     }
 
 
@@ -105,8 +108,8 @@ public class Health : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		//int temp = Random.Range (0, ListEffectDestroy.Length);
-		if(ListEffectDestroy[0] != null)
-			Instantiate (ListEffectDestroy[0], transform.position, Quaternion.identity);
+	//	if(ListEffectDestroy[0] != null)
+	//		Instantiate (ListEffectDestroy[0], transform.position, Quaternion.identity);
 		if (Items != null) {
 			for (int i = 0; i < Items.Length; i++) {
 				Vector3 pos = transform.position;
