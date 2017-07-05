@@ -25,8 +25,8 @@ public class Player : MonoBehaviour {
 
 
 
-	private Rigidbody2D bodyPlayer; // Control Player
-	float minX, maxX, minY, maxY, moveX, moveY, PlayerWidth, PlayerHeight;
+    //	private Rigidbody2D bodyPlayer; // Control Player
+    float minX, maxX, minY, maxY, moveX, moveY, PlayerWidth, PlayerHeight;
 	Vector2 posTouch, posTouchMove;
 	bool mouseControl = false;
 
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour {
 		InitPlayer ();
 		damgePerBullet = Damge/listGun.Length;
 
-		bodyPlayer = GetComponent<Rigidbody2D> ();
+	//	bodyPlayer = GetComponent<Rigidbody2D> ();
 		Vector3 bounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f));
 		Sprite spPlayer = GetComponent<SpriteRenderer> ().sprite;
 		PlayerWidth = spPlayer.bounds.min.x * transform.localScale.x;

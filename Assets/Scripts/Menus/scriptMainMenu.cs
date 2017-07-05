@@ -49,6 +49,6 @@ public class scriptMainMenu : MonoBehaviour {
 	public void gotoGamePlay(string level)
 	{
 		GameManager.instance.setLevel (level);
-		Application.LoadLevel (Define.sceneLevel1);
+		Application.LoadLevel ("sceneLevel01");
 	}
 }

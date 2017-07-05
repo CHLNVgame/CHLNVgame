@@ -7,7 +7,6 @@ public class LoadPlayer : MonoBehaviour {
 	[SerializeField]
 	private Object[] ListPlayer = null;
 	public Transform playerTrans;
-	public GameObject trans;
 	public int idPlayerActive;
 	// Use this for initialization
 
@@ -15,8 +14,7 @@ public class LoadPlayer : MonoBehaviour {
 	{
 	//	idPlayerActive = MainCharacter.Instance.getPlaneID ();
 
-		trans = (GameObject)Instantiate (ListPlayer[idPlayerActive], transform.position, Quaternion.identity);
-		trans.transform.SetParent (playerTrans);
+		Instantiate (ListPlayer[idPlayerActive], transform);
 	}
 
 }

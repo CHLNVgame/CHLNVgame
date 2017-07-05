@@ -35,7 +35,7 @@ public class Box : MonoBehaviour {
     }
 	void OnTriggerEnter2D(Collider2D target)
 	{
-		Debug.Log (target.tag);
+	//	Debug.Log (target.tag);
 		if (target.tag == "DestroyEnemies")
 			Destroy (gameObject);
 	}
