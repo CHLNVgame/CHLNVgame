@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour {
 
 	public Image healthBar;
+    public Material hurtMaterial;
 
 	private Transform activeHealthBar;
 
 	private int Damge;
 	private int HP;
 	private int totalHP;
+    private Material normalMaterial;
 
 	[SerializeField] private GameObject[] ListEffectDestroy = null;
 	[SerializeField] private GameObject[] Items = null;
@@ -20,7 +22,10 @@ public class Health : MonoBehaviour {
 		// Only enemy have health bar
 		if (gameObject.tag != "Player") 
 				activeHealthBar = transform.GetChild (0);
-	}
+
+        normalMaterial = gameObject.GetComponent<SpriteRenderer>().material;
+
+    }
 
 	public void SeekHealthDamge(int hp, int damge)
 	{
@@ -81,7 +86,15 @@ public class Health : MonoBehaviour {
 			DestroyObject ();
 			return;
 		}
+
+        gameObject.GetComponent<SpriteRenderer>().material = hurtMaterial;
+        Invoke("ReturnNormalMaterial", 0.1f);
 	}
+
+    void ReturnNormalMaterial()
+    {
+        gameObject.GetComponent<SpriteRenderer>().material = normalMaterial;
+    }
 
 
 	void DestroyObject()
