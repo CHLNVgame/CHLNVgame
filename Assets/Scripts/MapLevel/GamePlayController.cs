@@ -15,6 +15,9 @@ public class GamePlayController : MonoBehaviour {
 	private int totalHealth;
 	private float timeDelay;
 	float timerStart;
+	float timerControll;
+	GameObject boss;
+	GameObject player;
 	public void seekHP(int hp, bool firstHP)
 	{
 		health = hp;
@@ -54,31 +57,40 @@ public class GamePlayController : MonoBehaviour {
     }
 	void Start () {	
 		timerStart = Time.time + Define.GAMEPLAY_TIMER_START;
-
+		timerControll = Time.time + Define.GAMEPLAY_TIMER_START;
+		boss = GameObject.FindGameObjectWithTag ("Boss");
+		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 	void Update()
 	{
+		if (Time.time <= timerControll) {
+			if(player == null)
+				player = GameObject.FindGameObjectWithTag ("Player");
+			if(boss == null)
+				boss = GameObject.FindGameObjectWithTag ("Boss");
+			return;
+		} 
+		if (Time.time >= timerControll + Define.GAMEPLAY_TIMER_READY && Time.time <= timerControll+Define.GAMEPLAY_TIMER_READY + 1f) {
+			ShowGetReady ();
+			return;
+		}
+		HideGetReady ();
 		CheckGameVictory ();
 		CheckGameOver ();
 		if (EndGame) {
 			//EndGame = false;
 
 			if (Victory) {
-				if (Time.time > timeDelay) {
+				if (Time.time > timerControll) {
 					ShowVictoryPanel ();
 				}
-				if (Time.time > timeDelay + Define.GAMEPLAY_TIMER_DELAY)
+				if (Time.time > timerControll + Define.GAMEPLAY_TIMER_DELAY)
 					Application.LoadLevel (Define.sceneMainMenu);
 			} else {
-				if (Time.time > timeDelay) {
+				if (Time.time > timerControll) {
 					ShowGameOver ();
 				}
 			}
-		}
-		if (Time.time > timerStart && Time.time < timerStart + Define.GAMEPLAY_TIMER_DELAY) {
-			ShowGetReady ();
-		} else {
-			HideGetReady ();
 		}
 	}
 	public void PauseGame()
@@ -103,7 +115,7 @@ public class GamePlayController : MonoBehaviour {
 	public void SetGameVictory(bool bVictory)
 	{
 		if (bVictory)
-			timeDelay = Time.time + Define.GAMEPLAY_TIMER_DELAY;
+			timerControll = Time.time + Define.GAMEPLAY_TIMER_DELAY;
 		Victory = bVictory;
 	}
     public bool GetGameVictory()
@@ -112,7 +124,7 @@ public class GamePlayController : MonoBehaviour {
     }
 	public void SetGameEndGame(bool bEndGame)
 	{
-		timeDelay = Time.time + Define.GAMEPLAY_TIMER_DELAY;
+		timerControll = Time.time + Define.GAMEPLAY_TIMER_DELAY;
 		EndGame = bEndGame;
 	}
 	public bool GetEndGame()
@@ -141,7 +153,6 @@ public class GamePlayController : MonoBehaviour {
 	}
 	void CheckGameVictory()
 	{
-		GameObject boss = GameObject.FindGameObjectWithTag ("Boss");
 		if (boss == null && !Victory) {
 			SetGameEndGame (true);
 			SetGameVictory (true);
@@ -149,9 +160,14 @@ public class GamePlayController : MonoBehaviour {
 	}
 	void CheckGameOver()
 	{
-		GameObject player = GameObject.FindGameObjectWithTag ("Player");
+		//player = GameObject.FindGameObjectWithTag ("Player");
+		Debug.Log ("Player:"+ player);
 		if (player == null && !EndGame) {			
 			SetGameEndGame (true);
 		}
+	}
+	public float GetTimerControll()
+	{
+		return timerControll;
 	}
 }

@@ -81,6 +81,12 @@ public class Define : MonoBehaviour {
     // Coins
     public const float DISTANCE_COIN_PLAYER = 6f;
 	public const float SPEED_COIN_PLAYER = 2f;
+
+	public const float DISTANCE_ITEMS_PLAYER = 6f;
+	public const float SPEED_ITEMS_PLAYER = 2f;
+
+	//Timer
 	public const float GAMEPLAY_TIMER_DELAY = 2f;
-	public const float GAMEPLAY_TIMER_START = 0.9f;
+	public const float GAMEPLAY_TIMER_START = 1f;
+	public const float GAMEPLAY_TIMER_READY = 4f;
 }

@@ -10,11 +10,13 @@ public class Player : MonoBehaviour {
 	public Transform leftBot;
 	public Transform rightBot;
 
+	public Transform posStart;
+
 	private float speedMoveKey = 2;
 
 	private int ClassPlayer;
-    private int Speed = 6;
-	private int SpeedAuto = 0;
+    private float Speed = 6;
+	private float SpeedAuto = 10;
 	private int HP;
 	private int Damge;
 	private int DamgeSpecial;
@@ -140,12 +142,17 @@ public class Player : MonoBehaviour {
 
         transform.position = tempPosition;
         */
-		leftBotPlayer.SeekPosition (leftBot);
-		rightBotPlayer.SeekPosition (rightBot);
-		if (Time.time < timerStart || GamePlayController.instance.GetGameVictory ()) {
-			possStart.y += SpeedAuto * Time.deltaTime;
-			SpeedAuto++;
-			transform.position = possStart;
+		if(leftBotPlayer != null)
+			leftBotPlayer.SeekPosition (leftBot);
+		if(rightBotPlayer != null)
+			rightBotPlayer.SeekPosition (rightBot);
+		if (Time.time < GamePlayController.instance.GetTimerControll()) {
+			transform.position = Vector3.MoveTowards (transform.position, posStart.position, SpeedAuto * Time.deltaTime);
+			return;
+		}
+		if (GamePlayController.instance.GetGameVictory ()) {
+			if(Time.time > GamePlayController.instance.GetTimerControll() + 0.5f)
+				transform.position += Vector3.up* SpeedAuto*2 * Time.deltaTime;
 			return;
 		}
 
