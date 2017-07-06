@@ -10,6 +10,7 @@ public class Canon : MonoBehaviour {
 	public float timeAction = 0f;
 	public int HP;
 	public int Damge;
+    public int Bonus;
 
 	private int level = 0;
 
@@ -27,10 +28,12 @@ public class Canon : MonoBehaviour {
 		Speed = Attributes.CANON_ATT [level, Attributes.SPEED_CANON];
 		HP = Attributes.CANON_ATT[level, Attributes.HP_CANON];
 		Damge = Attributes.CANON_ATT[level, Attributes.DAMGE_CANON];
+        Bonus = Attributes.CANON_ATT[level, Attributes.BONUS_CANON];
 
-		Health health = GetComponent<Health> ();
+
+        Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SeekHealthDamge (HP, Damge);
+            health.SeekHealthDamge(HP, Damge, Bonus);
     }
 
     // Update is called once per frame

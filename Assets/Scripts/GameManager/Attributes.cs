@@ -106,12 +106,13 @@ public class Attributes : MonoBehaviour {
 	public const int SPEED_BOM		= 0;
 	public const int HP_BOM	= 1;
 	public const int DAMGE_BOM	= 2;
-	public const int TOTAL_BOM_ATT 	= 3;
+    public const int BONUS_BOM = 3;
+    public const int TOTAL_BOM_ATT 	= 4;
 
 	public static int[,] BOM_ATT = new int[TOTAL_LEVEL_BOM, TOTAL_BOM_ATT] {
-		{ 1, 3 , 10},
-		{ 1, 10, 10 }
-	};
+        { 1, 3 , 10, 1},
+        { 1, 10, 10, 1 }
+    };
 
 	public const int TOTAL_LEVEL_BOM_BULLET	= 2;
 
@@ -119,11 +120,12 @@ public class Attributes : MonoBehaviour {
 	public const int SPEED_BOM_BULLET		= 0;
 	public const int HP_BOM_BULLET	= 1;
 	public const int DAMGE_BOM_BULLET	= 2;
-	public const int TOTAL_BOM_BULLET_ATT 	= 3;
+    public const int BONUS_BOM_BULLET = 3;
+	public const int TOTAL_BOM_BULLET_ATT 	= 4;
 
 	public static int[,] BOM_BULLET_ATT = new int[TOTAL_LEVEL_BOM_BULLET, TOTAL_BOM_BULLET_ATT] {
-		{ 1, 3 , 10},
-		{ 1, 10, 10 }
+		{ 1, 3 , 10, 1},
+		{ 1, 10, 10, 1 }
 	};
 
 	public const int TOTAL_LEVEL_BOX	= 2;
@@ -131,25 +133,27 @@ public class Attributes : MonoBehaviour {
 
 	public const int SPEED_BOX		= 0;
 	public const int HP_BOX	= 1;
-	public const int DAMGE_BOX	= 1;
-	public const int TOTAL_BOX 	= 3;
+	public const int DAMGE_BOX	= 2;
+    public const int BONUS_BOX = 3;
+    public const int TOTAL_BOX 	= 4;
 
 	public static int[,] BOX_ATT = new int[TOTAL_LEVEL_BOX, TOTAL_BOX] {
-		{ 1, 3 , 10},
-		{ 1, 10, 10 }
-	};
+        { 1, 3 , 10, 1},
+        { 1, 10, 10, 1 }
+    };
 
 	public const int TOTAL_LEVEL_CANON	= 2;
 
 	public const int SPEED_CANON		= 0;
 	public const int HP_CANON	= 1;
 	public const int DAMGE_CANON	= 2;
-	public const int TOTAL_CANON 	= 3;
+    public const int BONUS_CANON = 3;
+    public const int TOTAL_CANON 	= 4;
 
 	public static int[,] CANON_ATT = new int[TOTAL_LEVEL_CANON, TOTAL_CANON] {
-		{ 1, 3 , 10},
-		{ 1, 10, 10 }
-	};
+        { 1, 3 , 10, 1},
+        { 1, 10, 10, 1 }
+    };
 
 	public const int TOTAL_LEVEL_ROCKET	= 2;
 
@@ -157,13 +161,14 @@ public class Attributes : MonoBehaviour {
 	public const int SPEED_ROCKET		= 0;
 	public const int HP_ROCKET	= 1;
 	public const int DAMGE_ROCKET	= 2;
-	public const int TOTAL_ROCKET 	= 3;
+    public const int BONUS_ROCKET = 3;
+    public const int TOTAL_ROCKET 	= 4;
 
 
 	public static int[,] ROCKET_ATT = new int[TOTAL_LEVEL_ROCKET, TOTAL_ROCKET] {
-		{ 1, 3 , 10},
-		{ 1, 10, 10 }
-	};
+        { 1, 3 , 10, 1},
+        { 1, 10, 10, 1 }
+    };
 
 	public const int TOTAL_LEVEL_SPECIAL	= 2;
 
@@ -171,12 +176,13 @@ public class Attributes : MonoBehaviour {
 	public const int SPEED_SPECIAL		= 0;
 	public const int HP_SPECIAL	= 1;
 	public const int DAMGE_SPECIAL	= 2;
-	public const int TOTAL_SPECIAL 	= 3;
+    public const int BONUS_SPECIAL = 3;
+    public const int TOTAL_SPECIAL 	= 4;
 
 	public static int[,] SPECIAL_ATT = new int[TOTAL_LEVEL_SPECIAL, TOTAL_SPECIAL] {
-		{ 1, 3 , 10},
-		{ 1, 10, 10 }
-	};
+         { 1, 3 , 10, 1},
+        { 1, 10, 10, 1 }
+    };
 
 
 

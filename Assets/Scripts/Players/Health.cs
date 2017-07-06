@@ -6,20 +6,19 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour {
 
 	public Image healthBar;
-    public Material hurtMaterial;
-    public GameObject poitLight;
 
 	private Transform activeHealthBar;
-
 	private int Damge;
 	private int HP;
 	private int totalHP;
+    private int Bonus;
     private Material normalMaterial;
 
-	[SerializeField] private GameObject[] ListEffectDestroy = null;
-	[SerializeField] private GameObject[] Items = null;
-	void Start()
+    LoadPrefabInGame loadPrefab;
+
+    void Start()
 	{
+        loadPrefab = LoadPrefabInGame.instance;
 		// Only enemy have health bar
 		if (gameObject.tag != "Player") 
 				activeHealthBar = transform.GetChild (0);
@@ -28,12 +27,13 @@ public class Health : MonoBehaviour {
 
     }
 
-	public void SeekHealthDamge(int hp, int damge)
+	public void SeekHealthDamge(int hp, int damge, int bonus)
 	{
 		HP = hp;
 		totalHP = hp;
 
 		Damge = damge;
+        Bonus = bonus;
 	}
 
 	void OnTriggerEnter2D(Collider2D target) 
@@ -77,7 +77,6 @@ public class Health : MonoBehaviour {
 		{
 			if (activeHealthBar != null)
 				activeHealthBar.gameObject.SetActive (true);
-//			//Debug.Log (" 22222222222222222 ");
 			if (healthBar != null)
 				healthBar.fillAmount = (float)HP / totalHP;
 		}
@@ -88,37 +87,62 @@ public class Health : MonoBehaviour {
 			return;
 		}
 
-        gameObject.GetComponent<SpriteRenderer>().material = hurtMaterial;
-        poitLight.SetActive(true);
-        Invoke("ReturnNormalMaterial", 0.2f);
+        if (gameObject.tag == "Enemy")
+        {
+            gameObject.GetComponent<SpriteRenderer>().material = loadPrefab.hurtMaterial;
+            GameObject pointLight = (GameObject)Instantiate(loadPrefab.pointLightHurt, transform);
+            pointLight.transform.position += Vector3.back;
+            DestroyObject(pointLight, 0.1f);
+            Invoke("ReturnNormalMaterial", 0.2f);
+        }
 	}
 
     void ReturnNormalMaterial()
     {
         gameObject.GetComponent<SpriteRenderer>().material = normalMaterial;
-        poitLight.SetActive(false);
+   //     pointLight.SetActive(false);
     }
 
 
 	void DestroyObject()
 	{
-		if(gameObject.tag == "Enemy")			
-			Destroy (gameObject);
-		if (gameObject.tag == "Player") {
-			Destroy (gameObject);
-		}
-		//int temp = Random.Range (0, ListEffectDestroy.Length);
-	//	if(ListEffectDestroy[0] != null)
-	//		Instantiate (ListEffectDestroy[0], transform.position, Quaternion.identity);
-		if (Items != null) {
-			for (int i = 0; i < Items.Length; i++) {
-				Vector3 pos = transform.position;
-				float max = pos.x + 1;
-				float min = pos.x - 1;
-				pos.x = Random.Range (min, max);
-				Instantiate (Items[i], pos, Quaternion.identity);
-			}
-		}
+
+        if (gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+
+        if (gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+            CreateBonus();
+        }
+       // int temp = Random.Range (0, LoadPrefabInGame.instance.listExplosion.Length);
+     //   if(ListEffectDestroy[0] != null)
+        		Instantiate (loadPrefab.listExplosion[0], transform.position, Quaternion.identity);
+
+        
 	}
+
+    void CreateBonus()
+    {
+        int idBonus = 0;
+        int randomBonus = Random.Range(0, 100);
+        if (randomBonus < 100)
+            idBonus = 0;
+
+        if (idBonus == 0) //coin small
+        {           
+            for (int i = 0; i < Bonus; i++)
+            {
+                
+                Vector3 pos = transform.position;
+                float max = pos.x + 1;
+                float min = pos.x - 1;
+                pos.x = Random.Range(min, max);
+                Instantiate(loadPrefab.listBonus[idBonus], pos, Quaternion.identity);
+            }
+        }
+    }
 
 }

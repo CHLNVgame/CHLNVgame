@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour {
 	protected int Damge;
 	protected int SpeedBulletShot;
 	protected float FireRate;
+    protected int Bonus;
 	protected bool actived = false;
 
 	// Update is called once per frame

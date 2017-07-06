@@ -11,15 +11,16 @@ public class E5 : Enemy {
 		Speed = Attributes.E5_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP    = Attributes.E5_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
 		Damge = Attributes.E5_ATT[levelEnemy - 1, Attributes.DAMGE_ENEMY];
-	}
+        Bonus = Attributes.E5_ATT[levelEnemy - 1, Attributes.BONUS_ENEMY];
+    }
 
 
 	void Start ()
 	{
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SeekHealthDamge (HP, Damge);
-		float max = Speed + 1;
+            health.SeekHealthDamge(HP, Damge, Bonus);
+        float max = Speed + 1;
 		float min = Speed - 1;
 		Speed = Random.Range (max, min);
 	}

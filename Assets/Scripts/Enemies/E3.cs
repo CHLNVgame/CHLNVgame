@@ -19,7 +19,8 @@ public class E3 : Enemy {
 		Speed = Attributes.E3_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP 	  = Attributes.E3_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
 		Damge = Attributes.E3_ATT[levelEnemy - 1, Attributes.DAMGE_ENEMY];
-		SpeedBulletShot = Attributes.E3_ATT [levelEnemy - 1, Attributes.SPEED_BULLET_ENEMY];
+        Bonus = Attributes.E3_ATT[levelEnemy - 1, Attributes.BONUS_ENEMY];
+        SpeedBulletShot = Attributes.E3_ATT [levelEnemy - 1, Attributes.SPEED_BULLET_ENEMY];
 		FireRate = Attributes.E3_ATT [levelEnemy - 1, Attributes.FIRE_RATE_BULLET_ENEMY];
 	}
 
@@ -28,8 +29,8 @@ public class E3 : Enemy {
 	{
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SeekHealthDamge (HP, Damge);
-	}
+            health.SeekHealthDamge(HP, Damge, Bonus);
+    }
 
 	// Update is called once per frame
 	void Update () {

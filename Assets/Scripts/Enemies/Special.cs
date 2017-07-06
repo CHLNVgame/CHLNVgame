@@ -8,19 +8,21 @@ public class Special : MonoBehaviour {
 	public float timeAction = 0f;
 	public int HP;
 	public int Damge;
+    public int Bonus;
 
-	private int level = 0;
+    private int level = 0;
 	// Use this for initialization
 	void Start()
 	{
 		Speed = Attributes.SPECIAL_ATT [level, Attributes.SPEED_SPECIAL];
 		HP = Attributes.SPECIAL_ATT[level, Attributes.HP_SPECIAL];
-		Damge = Attributes.SPECIAL_ATT[level, Attributes.DAMGE_ENEMY];
+		Damge = Attributes.SPECIAL_ATT[level, Attributes.DAMGE_SPECIAL];
+        Bonus = Attributes.SPECIAL_ATT[level, Attributes.BONUS_SPECIAL];
 
-		Health health = GetComponent<Health> ();
+        Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SeekHealthDamge (HP, Damge);
-	}
+            health.SeekHealthDamge(HP, Damge, Bonus);
+    }
 	
 	// Update is called once per frame
 	void Update () {

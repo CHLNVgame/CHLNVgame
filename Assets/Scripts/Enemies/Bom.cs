@@ -8,18 +8,20 @@ public class Bom : MonoBehaviour {
     public float timeAction = 0f;
 	public int HP;
 	public int Damge;
+    public int Bonus;
 
-	private int level = 0;
+    private int level = 0;
     // Use this for initialization
     void Start()
     {
 		Speed = Attributes.BOM_ATT [level, Attributes.SPEED_BOM];
 		HP = Attributes.BOM_ATT[level, Attributes.HP_BOM];
 		Damge = Attributes.BOM_ATT[level, Attributes.DAMGE_BOM];
+        Bonus = Attributes.BOM_ATT[level, Attributes.BONUS_BOM];
 
-		Health health = GetComponent<Health> ();
+        Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SeekHealthDamge (HP, Damge);
+            health.SeekHealthDamge(HP, Damge, Bonus);
     }
 
     // Update is called once per frame

@@ -78,8 +78,8 @@ public class Player : MonoBehaviour {
 		Health health = GetComponent<Health> ();
 
 		if(health != null)
-			health.SeekHealthDamge (HP, damgePerBullet); // only add damge  but no use.
-		GamePlayController.instance.seekHP (HP, true);
+            health.SeekHealthDamge(HP, 0, 0); // Function only add damge  and bonus for enemy
+        GamePlayController.instance.seekHP (HP, true);
 	}
 
 	// Use this for initialization

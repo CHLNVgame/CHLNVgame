@@ -26,15 +26,17 @@ public class E6 : Enemy {
 		Speed = Attributes.E6_ATT [levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP    = Attributes.E6_ATT [levelEnemy - 1, Attributes.HP_ENEMY];
 		Damge = Attributes.E6_ATT[levelEnemy - 1, Attributes.DAMGE_ENEMY];
+        Bonus = Attributes.E6_ATT[levelEnemy - 1, Attributes.BONUS_ENEMY];
 	}
 	void Start () {
 		
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SeekHealthDamge (HP, Damge);
-		var player = GameObject.FindGameObjectWithTag ("Player");
+            health.SeekHealthDamge(HP, Damge, Bonus);
+
+        GameObject player = GameObject.FindGameObjectWithTag ("Player");
 		if(player !=null)
-			tr_Player = GameObject.FindGameObjectWithTag ("Player").transform;
+			tr_Player = player.transform;
 		activeChase = true;
 
 		GameObject pathFollow = (GameObject)Instantiate (pathFollowPrefab, transform.position, transform.rotation);

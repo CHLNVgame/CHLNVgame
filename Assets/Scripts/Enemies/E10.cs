@@ -22,14 +22,15 @@ public class E10 : Enemy {
 		Speed = Attributes.E10_ATT[levelEnemy - 1, Attributes.SPEED_ENEMY];
 		HP = Attributes.E10_ATT[levelEnemy - 1, Attributes.HP_ENEMY];
 		Damge = Attributes.E10_ATT[levelEnemy - 1, Attributes.DAMGE_ENEMY];
-	}
+        Bonus = Attributes.E10_ATT[levelEnemy - 1, Attributes.BONUS_ENEMY];
+    }
 
 
 	void Start ()
 	{
 		Health health = GetComponent<Health> ();
 		if(health != null)
-			health.SeekHealthDamge (HP, Damge);
+			health.SeekHealthDamge (HP, Damge, Bonus);
 	}
 
 	// Update is called once per frame
