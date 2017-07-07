@@ -47,12 +47,15 @@ public class GamePlayController : MonoBehaviour {
 
     void Awake()
     {
+
         MakeInstance();
     }
     void MakeInstance()
     {
         if (instance == null)
+        {
             instance = this;
+        }
 		//DontDestroyOnLoad ();
     }
 	void Start () {	
@@ -63,18 +66,22 @@ public class GamePlayController : MonoBehaviour {
 	}
 	void Update()
 	{
-		if (Time.time <= timerControll) {
+        Debug.Log(" 11111111111111 Time.time: "+ Time.time);
+        Debug.Log(" 11111111111111 timerControll: " + timerControll);
+        if (Time.time <= timerControll) {
 			if(player == null)
 				player = GameObject.FindGameObjectWithTag ("Player");
 			if(boss == null)
 				boss = GameObject.FindGameObjectWithTag ("Boss");
 			return;
-		} 
-		if (Time.time >= timerControll + Define.GAMEPLAY_TIMER_READY && Time.time <= timerControll+Define.GAMEPLAY_TIMER_READY + 1f) {
+		}
+        Debug.Log(" 22222222222 ");
+        if (Time.time >= timerControll + Define.GAMEPLAY_TIMER_READY && Time.time <= timerControll+Define.GAMEPLAY_TIMER_READY + 1f) {
 			ShowGetReady ();
 			return;
 		}
-		HideGetReady ();
+        Debug.Log(" 333333 ");
+        HideGetReady ();
 		CheckGameVictory ();
 		CheckGameOver ();
 		if (EndGame) {
@@ -89,7 +96,8 @@ public class GamePlayController : MonoBehaviour {
 			} else {
 				if (Time.time > timerControll) {
 					ShowGameOver ();
-				}
+                    EndGame = false;
+                }
 			}
 		}
 	}
@@ -139,8 +147,9 @@ public class GamePlayController : MonoBehaviour {
 	}
 	public void LeaveGame()
 	{
-		GameOver.SetActive (false);
-		Time.timeScale = 1f;
+        Time.timeScale = 1f;
+        GameOver.SetActive (false);
+		
 		Application.LoadLevel (Define.sceneMainMenu);
 	}
 	public void ShowGetReady()
@@ -161,7 +170,7 @@ public class GamePlayController : MonoBehaviour {
 	void CheckGameOver()
 	{
 		//player = GameObject.FindGameObjectWithTag ("Player");
-		Debug.Log ("Player:"+ player);
+	//	Debug.Log ("Player:"+ player);
 		if (player == null && !EndGame) {			
 			SetGameEndGame (true);
 		}

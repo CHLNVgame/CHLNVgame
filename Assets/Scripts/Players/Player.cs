@@ -9,9 +9,6 @@ public class Player : MonoBehaviour {
 	//public Transform rightGun;
 	public Transform leftBot;
 	public Transform rightBot;
-
-	public Transform posStart;
-
 	private float speedMoveKey = 2;
 
 	private int ClassPlayer;
@@ -147,7 +144,7 @@ public class Player : MonoBehaviour {
 		if(rightBotPlayer != null)
 			rightBotPlayer.SeekPosition (rightBot);
 		if (Time.time < GamePlayController.instance.GetTimerControll()) {
-			transform.position = Vector3.MoveTowards (transform.position, posStart.position, SpeedAuto * Time.deltaTime);
+			transform.position = Vector3.MoveTowards (transform.position, transform.position+Vector3.up, SpeedAuto * Time.deltaTime);
 			return;
 		}
 		if (GamePlayController.instance.GetGameVictory ()) {
