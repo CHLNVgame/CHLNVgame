@@ -40,9 +40,7 @@ public class Player : MonoBehaviour {
 	private BotPlayer rightBotPlayer;
 
 	bool canShoot = true;
-	float timerControl;
-	float timerStart;
-	Vector3 possStart;
+
 	void Awake() {
 
 		//InitPlayer ();
@@ -95,8 +93,6 @@ public class Player : MonoBehaviour {
 		maxX = bounds.x + PlayerWidth;
 		minY = -bounds.y - PlayerHeight;
 		maxY = bounds.y + PlayerHeight;
-		timerStart = Time.time + Define.GAMEPLAY_TIMER_START;
-		possStart = transform.position;
 	}
 
 	// Update is called once per frame
@@ -143,12 +139,11 @@ public class Player : MonoBehaviour {
 			leftBotPlayer.SeekPosition (leftBot);
 		if(rightBotPlayer != null)
 			rightBotPlayer.SeekPosition (rightBot);
-		if (Time.time < GamePlayController.instance.GetTimerControll()) {
+		if (Time.timeSinceLevelLoad <= Define.GAMEPLAY_TIMER_START) {
 			transform.position = Vector3.MoveTowards (transform.position, transform.position+Vector3.up, SpeedAuto * Time.deltaTime);
 			return;
 		}
 		if (GamePlayController.instance.GetGameVictory ()) {
-			if(Time.time > GamePlayController.instance.GetTimerControll() + 0.5f)
 				transform.position += Vector3.up* SpeedAuto*2 * Time.deltaTime;
 			return;
 		}

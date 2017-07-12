@@ -13,11 +13,10 @@ public class GamePlayController : MonoBehaviour {
 	private bool EndGame = false;
 	private int health;
 	private int totalHealth;
-	private float timeDelay;
-	float timerStart;
 	float timerControll;
 	GameObject boss;
 	GameObject player;
+
 	public void seekHP(int hp, bool firstHP)
 	{
 		health = hp;
@@ -59,34 +58,26 @@ public class GamePlayController : MonoBehaviour {
 		//DontDestroyOnLoad ();
     }
 	void Start () {	
-		timerStart = Time.time + Define.GAMEPLAY_TIMER_START;
-		timerControll = Time.time + Define.GAMEPLAY_TIMER_START;
 		boss = GameObject.FindGameObjectWithTag ("Boss");
 		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 	void Update()
 	{
-        Debug.Log(" 11111111111111 Time.time: "+ Time.time);
-        Debug.Log(" 11111111111111 timerControll: " + timerControll);
-        if (Time.time <= timerControll) {
+       
+		if (Time.timeSinceLevelLoad <= Define.GAMEPLAY_TIMER_START) {
 			if(player == null)
 				player = GameObject.FindGameObjectWithTag ("Player");
 			if(boss == null)
 				boss = GameObject.FindGameObjectWithTag ("Boss");
-			return;
 		}
-        Debug.Log(" 22222222222 ");
-        if (Time.time >= timerControll + Define.GAMEPLAY_TIMER_READY && Time.time <= timerControll+Define.GAMEPLAY_TIMER_READY + 1f) {
+       
+		if (Time.timeSinceLevelLoad >= Define.GAMEPLAY_TIMER_READY && Time.timeSinceLevelLoad <= Define.GAMEPLAY_TIMER_READY + Define.GAMEPLAY_TIMER_READY) {
 			ShowGetReady ();
-			return;
+		} else {
+			HideGetReady ();
 		}
-        Debug.Log(" 333333 ");
-        HideGetReady ();
-		CheckGameVictory ();
-		CheckGameOver ();
-		if (EndGame) {
-			//EndGame = false;
 
+		if (EndGame) {
 			if (Victory) {
 				if (Time.time > timerControll) {
 					ShowVictoryPanel ();
@@ -96,9 +87,12 @@ public class GamePlayController : MonoBehaviour {
 			} else {
 				if (Time.time > timerControll) {
 					ShowGameOver ();
-                    EndGame = false;
-                }
+					EndGame = false;
+				}
 			}
+		} else {
+			CheckGameVictory ();
+			CheckGameOver ();
 		}
 	}
 	public void PauseGame()
@@ -128,7 +122,7 @@ public class GamePlayController : MonoBehaviour {
 	}
     public bool GetGameVictory()
     {
-		return Victory && (Time.time > timeDelay);
+		return VictoryPanel.activeSelf;
     }
 	public void SetGameEndGame(bool bEndGame)
 	{
@@ -154,11 +148,13 @@ public class GamePlayController : MonoBehaviour {
 	}
 	public void ShowGetReady()
 	{
-		GetReady.SetActive (true);
+		if(!GetReady.activeSelf)
+			GetReady.SetActive (true);
 	}
 	public void HideGetReady()
 	{
-		GetReady.SetActive (false);
+		if(GetReady.activeSelf)
+			GetReady.SetActive (false);
 	}
 	void CheckGameVictory()
 	{
@@ -169,8 +165,6 @@ public class GamePlayController : MonoBehaviour {
 	}
 	void CheckGameOver()
 	{
-		//player = GameObject.FindGameObjectWithTag ("Player");
-	//	Debug.Log ("Player:"+ player);
 		if (player == null && !EndGame) {			
 			SetGameEndGame (true);
 		}

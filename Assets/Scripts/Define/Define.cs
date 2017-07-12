@@ -88,5 +88,5 @@ public class Define : MonoBehaviour {
 	//Timer
 	public const float GAMEPLAY_TIMER_DELAY = 2f;
 	public const float GAMEPLAY_TIMER_START = 1f;
-	public const float GAMEPLAY_TIMER_READY = 4f;
+	public const float GAMEPLAY_TIMER_READY = 3f;
 }
