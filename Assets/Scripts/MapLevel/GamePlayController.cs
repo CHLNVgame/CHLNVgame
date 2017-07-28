@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GamePlayController : MonoBehaviour {
     public static GamePlayController instance;
@@ -107,7 +108,10 @@ public class GamePlayController : MonoBehaviour {
     }
     public void Exit()
     {
-        Application.Quit();
+        //Application.Quit();
+		PausePanel.SetActive(false);
+		Time.timeScale = 1f;
+		SceneManager.LoadScene (Define.sceneMainMenu);
     }
     public void ShowVictoryPanel()
     {
@@ -144,7 +148,7 @@ public class GamePlayController : MonoBehaviour {
         Time.timeScale = 1f;
         GameOver.SetActive (false);
 		
-		Application.LoadLevel (Define.sceneMainMenu);
+		SceneManager.LoadScene (Define.sceneMainMenu);
 	}
 	public void ShowGetReady()
 	{
